@@ -38,6 +38,10 @@ class PagesController extends AppController {
  */
 	public $uses = array();
 
+	public function beforeFilter(){
+		$this->Auth->allow('home','about','contact');
+		parent::beforeFilter();
+	}
 /**
  * Displays a view
  *
@@ -46,11 +50,21 @@ class PagesController extends AppController {
  *	or MissingViewException in debug mode.
  */
 
+
 	public function home(){
+
+	}
+
+	public function about(){
+
+	}
+
+	public function contact(){
 
 	}
 
 	public function isAuthorized($user) {
 		return true;
 	}
+
 }
