@@ -83,7 +83,7 @@ class UsersController extends AppController {
           }
           $this->Session->setFlash(__('Credenziali errate! Riprova.'),'Flash/error');
       }
-      $this->redirect(array('controller'=>'pages','action'=>'home'));
+      $this->redirect($this->referer());
     }
 
     public function logout() {
