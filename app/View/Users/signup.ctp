@@ -1,6 +1,5 @@
 <!-- app/View/Users/add.ctp -->
-
-<?= $this->Form->create('User', array('class'=>'well form-horizontal','id'=>'contact_form','action'=>'signup')); ?>
+  <?= $this->Form->create('User', array('class'=>'well form-horizontal','id'=>'contact_form','action'=>'signup')); ?>
 <!-- Form Name -->
   <legend><center><h2><b><?=  __('Registrazione'); ?></b></h2></center></legend><br>
   <!-- Username Input-->
