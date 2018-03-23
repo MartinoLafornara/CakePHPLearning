@@ -15,8 +15,12 @@
 .btn.btn-circle { border-radius: 50px; }
 .btn.btn-outline { background-color: transparent; }
 
-/* NavBAr Margin Bottom*/
+/* NavBar Margin Bottom*/
 .navbar-default { margin: 0px !important; }
+
+/* Alert Flash Message*/
+
+.alert{ margin:0px; }
 
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; }

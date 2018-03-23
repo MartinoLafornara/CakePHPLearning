@@ -35,9 +35,8 @@ class UsersController extends AppController {
             $this->request->data['User']['role'] = 'author';
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('Ti sei registrato!'),'Flash/success');
-                return $this->redirect(array('action' => 'index'));
+                //return $this->redirect(array('action' => 'index'));
             }
-            //$this->Session->setFlash(__('Credenziali errate! Riprova.','Flash/error'));
         }
     }
 

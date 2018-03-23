@@ -1,3 +1,3 @@
-<p><?= $this->Html->link("Add", array('action' => 'signup')); ?> </p>
-<p><?= $this->Html->link('Login',array('action'=>'login'));?></p>
-<?php //print_r($prova) ?>
+<pre>
+<?php print_r($users) ?>
+</pre>

@@ -14,7 +14,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework USER INTERFACE');
+$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
@@ -28,27 +28,26 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+
+		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css');
+		echo $this->Html->css('front_layout.css');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
+
 	?>
 </head>
 
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 			<?php
-				echo $this->element('Navbar/navLoggedIn');
+				echo $this->element('Navbar/navLoggedOut');
 			?>
-
+			<?php echo $this->Session->flash(); ?>
 		</div>
 
 		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
@@ -60,13 +59,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				);
 			?>
 			<p>
-				<?php echo $cakeVersion; ?>
+				<?php
+				echo $cakeVersion;
+				?>
 			</p>
 		</div>
 	</div>
-	<?php
-	//Decommenta eventuaolmente per visualizzare la query slq relativa alla ACTION
-	//echo $this->element('sql_dump');
-	?>
+	<?= $this->Html->script('https://code.jquery.com/jquery-1.11.1.min.js'); ?>
+	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'); ?>
+	<?= $this->fetch('script'); ?>
 </body>
 </html>
