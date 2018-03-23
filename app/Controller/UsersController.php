@@ -48,10 +48,10 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'),'Flash/success');
+                $this->Session->setFlash(__('Dati utente modificati!'),'Flash/success');
                 return $this->redirect(array('action' => 'index'));
             }
-            $this->Session->setFlash(__('The user could not be saved. Please, try again.'),'Flash/error');
+            $this->Session->setFlash(__('L\'utente non può essere modificato'),'Flash/error');
         } else {
             $this->request->data = $this->User->findById($id);
             unset($this->request->data['User']['password']);
