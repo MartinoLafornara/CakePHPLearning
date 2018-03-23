@@ -29,12 +29,12 @@ class UsersController extends AppController {
             if($this->User->find('count', array('conditions' => array('username =' => $this->request->data['User']['username']))) != 0)
             {
               // Username già esistente
-              return $this->Session->setFlash(__('Username già esistente.','Flash/error'));
+              return $this->Session->setFlash(__('Username già esistente.'),'Flash/error');
             }
             $this->User->create();
             $this->request->data['User']['role'] = 'author';
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Ti sei registrato!','Flash/success'));
+                $this->Session->setFlash(__('Ti sei registrato!'),'Flash/success');
                 return $this->redirect(array('action' => 'index'));
             }
             //$this->Session->setFlash(__('Credenziali errate! Riprova.','Flash/error'));
@@ -48,10 +48,10 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved','Flash/success'));
+                $this->Session->setFlash(__('The user has been saved'),'Flash/success');
                 return $this->redirect(array('action' => 'index'));
             }
-            $this->Session->setFlash(__('The user could not be saved. Please, try again.','Flash/error'));
+            $this->Session->setFlash(__('The user could not be saved. Please, try again.'),'Flash/error');
         } else {
             $this->request->data = $this->User->findById($id);
             unset($this->request->data['User']['password']);
@@ -69,10 +69,10 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('Utente rimosso.','Flash/success'));
+            $this->Session->setFlash(__('Utente rimosso.'),'Flash/success');
             return $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('Errore, utente non eliminato!','Flash/error'));
+        $this->Session->setFlash(__('Errore, utente non eliminato!'),'Flash/error');
         return $this->redirect(array('action' => 'index'));
     }
 
@@ -81,8 +81,9 @@ class UsersController extends AppController {
           if ($this->Auth->login()) {
               return $this->redirect($this->Auth->redirectUrl());
           }
-          $this->Session->setFlash(__('Credenziali errate! Riprova.','Flash/error'));
+          $this->Session->setFlash(__('Credenziali errate! Riprova.'),'Flash/error');
       }
+      $this->redirect(array('controller'=>'pages','action'=>'home'));
     }
 
     public function logout() {
