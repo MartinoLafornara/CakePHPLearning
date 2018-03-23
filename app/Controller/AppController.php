@@ -20,6 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
+//App::uses('CakeEvent', 'Event');
 
 /**
  * Application Controller
@@ -39,8 +40,8 @@ class AppController extends Controller {
               'action' => 'index'
           ),
           'logoutRedirect' => array(
-              'controller' => 'users',
-              'action' => 'index'
+              'controller' => 'pages',
+              'action' => 'home'
           ),
           'authenticate' => array(
               'Form' => array(
@@ -54,6 +55,13 @@ class AppController extends Controller {
 
   public function beforeFilter() {
     $this->Auth->allow('index', 'view');
+  }
+
+  public function beforeRender() {
+    if (!$this->Session->read('Auth.User')){
+      //$this->set('isLogged',true);
+      $this->layout = 'front_layout';
+    }
   }
 
   public function isAuthorized($user) {
