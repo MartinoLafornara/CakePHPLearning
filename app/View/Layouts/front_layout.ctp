@@ -27,12 +27,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
+		echo $this->fetch('meta');
 
 		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css');
 		echo $this->Html->css('front_layout.css');
 
-		echo $this->fetch('meta');
+
 		echo $this->fetch('css');
 
 	?>
