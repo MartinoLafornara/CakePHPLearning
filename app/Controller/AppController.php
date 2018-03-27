@@ -45,7 +45,10 @@ class AppController extends Controller {
           ),
           'authenticate' => array(
               'Form' => array(
-                  'passwordHasher' => 'Blowfish'
+                  'passwordHasher' => 'Blowfish',
+                  'fields' => array(
+                      'username' => 'email'
+                  )
               )
           ),
           'authError' => 'Non sei autorizzato',

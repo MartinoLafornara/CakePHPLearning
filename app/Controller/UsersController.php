@@ -26,6 +26,7 @@ class UsersController extends AppController {
 
     public function signup() {
         if ($this->request->is('post')) {
+            pr($this->request->data); exit;
             if($this->User->find('count', array('conditions' => array('username =' => $this->request->data['User']['username']))) != 0)
             {
               // Username già esistente
@@ -34,8 +35,8 @@ class UsersController extends AppController {
             $this->User->create();
             $this->request->data['User']['role'] = 'author';
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Ti sei registrato!'),'Flash/success');
-                //return $this->redirect(array('action' => 'index'));
+                $this->Session->setFlash(__('Registrato correttamente!'),'Flash/success');
+                return $this->redirect(array('controller'=>'pages','action' => 'home'));
             }
         }
     }

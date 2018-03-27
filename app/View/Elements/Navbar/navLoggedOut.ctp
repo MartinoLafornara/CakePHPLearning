@@ -23,10 +23,10 @@
         <?= $this->Session->flash('auth'); ?>
         <?= $this->Form->create('User', array('class'=>'navbar-form navbar-right form-inline','role'=>'form','action'=>'login')); ?>
         <div class="form-group">
-          <?= $this->Form->input('username',array('class'=>'form-control','placeholder'=>'Username','label'=>'')); ?>
+          <?= $this->Form->input('email',array('class'=>'form-control','placeholder'=>'Email','label'=>'','type'=>'email','id'=>'UserEmail_login')); ?>
         </div>
         <div class="form-group">
-          <?= $this->Form->input('password',array('class'=>'form-control','placeholder'=>'Password','label'=>'')); ?>
+          <?= $this->Form->input('password',array('class'=>'form-control','placeholder'=>'Password','label'=>'','id'=>'UserPassword_login')); ?>
         </div>
         <?= $this->Form->button(__('Login'),array('class'=>'btn btn-success')); ?>
         <?= $this->Form->end(); ?>
