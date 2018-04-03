@@ -1,9 +1,6 @@
 <!-- File: /app/View/Posts/index.ctp -->
 
 <h1>Test CakePHP 2.5.7</h1>
-<p><?php echo $this->Html->link("Aggiungi Post", array('controller'=>'posts' ,'action' => 'add')); ?> </p>
-<p><?php echo $this->Html->link('Test',array('controller'=>'posts', 'action'=>'test'));?></p>
-<p><?php echo $this->Html->link('Logout ',array('controller'=>'users', 'action'=>'logout'));?></p>
 <pre>
 <?php print_r($userLogged); ?>
 </pre>
