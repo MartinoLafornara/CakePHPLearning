@@ -13,6 +13,10 @@
 	  <ul class="nav navbar-nav navbar-right">
 		  	<li><?= $this->Html->link("Home", array('controller'=>'posts','action' => 'index')); ?></li>
 			<li><?=  $this->Html->link("Aggiungi Post", array('controller'=>'posts' ,'action' => 'add')); ?> </li>
+			<?php if($userLogged['role'] == 'admin'): ?>
+			<li><?=  $this->Html->link("Lista Utenti", array('controller'=>'users' ,'action' => 'index')); ?> </li>
+			<?php endif; ?>
+
 			<li>
 		  <a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="#nav-collapse4" aria-expanded="false" aria-controls="nav-collapse4">Profile <i class=""></i> </a>
 		</li>
