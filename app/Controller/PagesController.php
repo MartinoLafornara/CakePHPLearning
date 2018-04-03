@@ -42,13 +42,11 @@ class PagesController extends AppController {
 		$this->Auth->allow('home','about','contact');
 		parent::beforeFilter();
 	}
-/**
- * Displays a view
- *
- * @return void
- * @throws NotFoundException When the view file could not be found
- *	or MissingViewException in debug mode.
- */
+
+	public function beforeRender(){
+		parent::beforeRender();
+		$this->layout = 'front_layout';
+	}
 
 
 	public function home(){
