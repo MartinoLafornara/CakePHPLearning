@@ -8,6 +8,7 @@ class UsersController extends AppController {
       parent::beforeFilter();
       // Allow users to register and logout.
       $this->Auth->allow('signup','logout','login','check_domain','check_duplicate');
+      $this->Auth->deny('index');
     }
 
     public function beforeRender(){
@@ -31,17 +32,20 @@ class UsersController extends AppController {
         $this->set('user', $this->User->findById($id));
     }
 
+
     public function signup() {
         if ($this->request->is('post')) {
-            pr($this->request->data); exit;
-            if($this->User->find('count', array('conditions' => array('username =' => $this->request->data['User']['username']))) != 0)
-            {
-              // Username già esistente
-              return $this->Session->setFlash(__('Username già esistente.'),'Flash/error');
-            }
+            //pr($this->request->data); exit;
+            // if($this->User->find('count', array('conditions' => array('email =' => $this->request->data['User']['email']))) != 0)
+            // {
+            //   // Email già esistente
+            //   $this->Session->setFlash(__('Email già registrata'),'Flash/error');
+            //   return $this->redirect(array('controller'=>'users','action' => 'signup'));
+            // }
             $this->User->create();
             $this->request->data['User']['role'] = 'author';
             if ($this->User->save($this->request->data)) {
+                //pr($this->User->find('all', array('conditions' => array('email =' => $this->request->data['User']['email'])))); exit;
                 $this->Session->setFlash(__('Registrato correttamente!'),'Flash/success');
                 return $this->redirect(array('controller'=>'pages','action' => 'home'));
             }
@@ -95,6 +99,33 @@ class UsersController extends AppController {
 
     public function logout() {
       return $this->redirect($this->Auth->logout());
+    }
+
+    public function check_domain(){
+        if($this->request->is('ajax')) {
+
+            $email = $this->request->query('data.User.email');
+            $check = preg_match('|^[a-zA-Z0-9.-_]+@[a-zA-Z0-9._]+\.[a-zA-Z0-9]+$|',$email);
+            $hostname = explode('@', $email);
+            if(count($hostname) > 1){
+                if($check){
+                    $risposta = file_get_contents('https://dns-api.org/MX/'.$hostname[1]);
+                    if (!(array_key_exists('error',json_decode($risposta,true)))){
+                        echo json_encode(array("valid" => true)); exit;
+                    }
+                }
+            }
+            echo json_encode(array("valid" => false)); exit;
+            //$this->request->query('data.User.email') se non trova il dato restituisce null
+            //$this->request->query['data']['User']['email'] genera un'eccezione se non trova il dato
+        }
+    }
+
+    public function check_duplicate() {
+        if($this->User->find('count', array('conditions' => array('User.email' => $this->request->query('email')))) != 0) {
+            echo json_encode(array("valid" => true)); exit;
+        }
+        echo json_encode(array("valid" => false)); exit;
     }
 
 }

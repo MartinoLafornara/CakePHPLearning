@@ -6,8 +6,7 @@ class PostsController extends AppController {
 
     public function index() {
 
-        $this->loadModel('User');
-        $this->set('userLogged', $this->Auth->user());
+        //$this->loadModel('User');
         $conditions = [];
         //$var = [];
         if($this->Auth->user('role') != 'admin'){
@@ -21,7 +20,8 @@ class PostsController extends AppController {
 
 
     public function beforeFilter(){
-
+        parent::beforeFilter();
+        $this->Auth->deny('index');
     }
 
     public function view($id = null) {
@@ -38,79 +38,78 @@ class PostsController extends AppController {
 
 
     public function isAuthorized($user) {
-      // All registered users can add posts
-      if ($this->action === 'add') {
-          return true;
-      }
 
-      // All registered users can access to posts/index
-      if(isset($user) && $this->action ==='index'){
-          return true;
-      }
+        // parent::isAuthorized($user);
 
-      // The owner of a post can edit and delete it
-      if (in_array($this->action, array('edit', 'delete'))) {
-          $postId = (int) $this->request->params['pass'][0];
-          if ($this->Post->isOwnedBy($postId, $user['id'])) {
-              return true;
-          }
-      }
+        // All registered users can add posts
+        if ($this->action === 'add') {
+            return true;
+        }
 
-      return parent::isAuthorized($user);
+        // All registered users can access to posts/index
+        if(isset($user) && $this->action ==='index'){
+            return true;
+        }
+
+        // The owner of a post can edit and delete it
+        if (in_array($this->action, array('edit', 'delete'))) {
+            $postId = (int) $this->request->params['pass'][0];
+            if ($this->Post->isOwnedBy($postId, $user['id'])) {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
     }
 
     public function add() {
-      if ($this->request->is('post')) {
-          //Added this line
-          $this->request->data['Post']['user_id'] = $this->Auth->user('id');
-          if ($this->Post->save($this->request->data)) {
-              $this->Session->setFlash(__('Il tuo post è stato inserito correttamente!'), 'Flash/success');
-              return $this->redirect(array('action' => 'index'));
-          }
-          $this->Session->setFlash(__('Operazione non eseguita correttamente!'), 'Flash/error');
-      }
+        if ($this->request->is('post')) {
+            //Added this line
+            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
+            if ($this->Post->save($this->request->data)) {
+                $this->Session->setFlash(__('Il tuo post è stato inserito correttamente!'), 'Flash/success');
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Operazione non eseguita correttamente!'), 'Flash/error');
+        }
     }
 
 
     public function edit($id = null) {
-      if (!$id) {
-          throw new NotFoundException(__('Post Invalido'));
-      }
+        if (!$id) {
+            throw new NotFoundException(__('Post Invalido'));
+        }
 
-      $post = $this->Post->findById($id);
-      if (!$post) {
-          throw new NotFoundException(__('Post Invalido'));
-      }
+        $post = $this->Post->findById($id);
+        if (!$post) {
+            throw new NotFoundException(__('Post Invalido'));
+        }
 
-      if ($this->request->is(array('post', 'put'))) {
-          $this->Post->id = $id;
-          if ($this->Post->save($this->request->data)) {
-              $this->Session->setFlash(__('Il tuo post è stato modificato correttamente!'), 'Flash/success');
-              return $this->redirect(array('action' => 'index'));
-          }
-          $this->Session->setFlash(__('Operazione non consentita!'), 'Flash/error');
-      }
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Post->id = $id;
+            if ($this->Post->save($this->request->data)) {
+                $this->Session->setFlash(__('Il tuo post è stato modificato correttamente!'), 'Flash/success');
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Operazione non consentita!'), 'Flash/error');
+        }
 
-      if (!$this->request->data) {
-          $this->request->data = $post;
-      }
+        if (!$this->request->data) {
+            $this->request->data = $post;
+        }
     }
 
     public function delete($id) {
-      if ($this->request->is('get')) {
-          throw new MethodNotAllowedException();
-      }
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
 
-      if ($this->Post->delete($id)) {
-          $this->Session->setFlash(__('Il post %s è stato eliminato.',h($id)), 'Flash/success');
-      } else {
-          $this->Session->setFlash(__('Il post %s non può essere eliminato.',h($id)), 'Flash/error');
-      }
-      return $this->redirect(array('action' => 'index'));
-    }
-
-    public function test(){
-      #code here
+        if ($this->Post->delete($id)) {
+            $this->Session->setFlash(__('Il post %s è stato eliminato.',h($id)), 'Flash/success');
+        } else {
+            $this->Session->setFlash(__('Il post %s non può essere eliminato.',h($id)), 'Flash/error');
+        }
+        return $this->redirect(array('action' => 'index'));
     }
 
 }

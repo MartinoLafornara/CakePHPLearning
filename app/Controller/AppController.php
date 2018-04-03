@@ -35,29 +35,35 @@ class AppController extends Controller {
   public $components = array(
       'Session',
       'Auth' => array(
-          'loginRedirect' => array(
-              'controller' => 'posts',
-              'action' => 'index'
-          ),
-          'logoutRedirect' => array(
-              'controller' => 'pages',
-              'action' => 'home'
-          ),
-          'authenticate' => array(
-              'Form' => array(
-                  'passwordHasher' => 'Blowfish',
-                  'fields' => array(
-                      'username' => 'email'
-                  )
-              )
-          ),
-          'authError' => 'Non sei autorizzato',
-          'authorize' => array('Controller') // Added this line
-      )
-  );
+            'loginRedirect' => array(
+                'controller' => 'posts',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish',
+                    'fields' => array(
+                        'username' => 'email'
+                    )
+                )
+            ),
+            'authError' => 'Non sei autorizzato',
+            'authorize' => array('Controller'), // Added this line
+            'unauthorizedRedirect' => array(
+                'controller' => 'posts',
+                'action' => 'index',
+                'prefix' => false
+            )
+        )
+    );
 
   public function beforeFilter() {
     $this->Auth->allow('index', 'view');
+    $this->set('userLogged', $this->Auth->user());
   }
 
   public function beforeRender() {
