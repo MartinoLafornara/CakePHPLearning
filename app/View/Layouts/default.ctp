@@ -27,19 +27,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
-
 		echo $this->fetch('meta');
+
+		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css');
+		echo $this->Html->css('default.css');
+
 		echo $this->fetch('css');
-		echo $this->fetch('script');
 	?>
 </head>
 
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 			<?php
 				echo $this->element('Navbar/navLoggedIn');
 			?>
@@ -64,9 +63,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</p>
 		</div>
 	</div>
-	<?php
-	//Decommenta eventuaolmente per visualizzare la query slq relativa alla ACTION
-	//echo $this->element('sql_dump');
-	?>
+	<?= $this->Html->script('https://code.jquery.com/jquery-1.11.1.min.js'); ?>
+	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'); ?>
+	<?= $this->fetch('script'); ?>
 </body>
 </html>
