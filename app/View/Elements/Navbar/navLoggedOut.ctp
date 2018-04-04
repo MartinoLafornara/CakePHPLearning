@@ -15,9 +15,15 @@
       	<li><?= $this->Html->link('Signup',array('controller'=>'users', 'action'=>'signup'));?></li>
       	<li><?= $this->Html->link('About',array('controller'=>'pages', 'action'=>'about'));?></li>
       	<li><?= $this->Html->link('Contattaci',array('controller'=>'pages', 'action'=>'contact'));?></li>
-      	<li>
-      	<a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" data-target="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Login</a>
-    	</li>
+        <?php if(isset($userLogged)): ?>
+            <li>
+            <?= $this->Html->link('Login',array('controller'=>'posts', 'action'=>'index'),array('class' => 'btn btn-default btn-outline btn-circle'));?>
+            </li>
+        <?php else: ?>
+            <li>
+            <a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" data-target="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Login</a>
+            </li>
+        <?php endif; ?>
       </ul>
       <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse2">
         <?= $this->Session->flash('auth'); ?>

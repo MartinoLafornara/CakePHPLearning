@@ -9,7 +9,7 @@
 
   // bsvalidator
   $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js',array('inline' => false));
-  $this->Html->script('signup.js',array('inline' => false));
+  $this->Html->script('users/signup.js',array('inline' => false));
 ?>
 
 

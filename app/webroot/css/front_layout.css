@@ -15,8 +15,9 @@
 .btn.btn-circle { border-radius: 50px; }
 .btn.btn-outline { background-color: transparent; }
 
-/* NavBar Margin Bottom*/
+/* NavBar */
 .navbar-default { margin: 0px !important; }
+.well { margin-bottom: 0px !important; }
 
 /* Alert Flash Message*/
 
@@ -30,7 +31,7 @@
     .nav-collapse>li { float: none; }
 }
 
-.well { margin-bottom: 0px !important; }
+
 
 /* CSS per Footer*/
 

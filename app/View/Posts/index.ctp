@@ -1,17 +1,19 @@
 <!-- File: /app/View/Posts/index.ctp -->
 
-<h1>Test CakePHP 2.5.7</h1>
+<!-- <h1>Test CakePHP 2.5.7</h1> -->
 <pre>
 <?php print_r($userLogged); ?>
 </pre>
 
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Titolo</th>
-        <th></th>
-        <th>Data Inserimento</th>
-    </tr>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Titolo</th>
+            <th>Azioni</th>
+            <th>Data Inserimento</th>
+        </tr>
+    </thead>
 
 <!-- Here's where we loop through our $posts array, printing out post info -->
 

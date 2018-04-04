@@ -11,15 +11,14 @@
                     <h5>Get started</h5>
                     <ul>
                         <li><?= $this->html->link('Home',array('controller' => 'pages', 'action' => 'home')); ?> </li>
-                        <li><a href="#">Sign up</a></li>
-                        <li><a href="#">Downloads</a></li>
+                        <li><?= $this->html->link('Signup',array('controller' => 'users', 'action' => 'signup')); ?></li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
                     <h5>About us</h5>
                     <ul>
+                        <li><?= $this->html->link('Contattaci',array('controller' => 'pages', 'action' => 'contact')); ?></li>
                         <li><a href="#">Company Information</a></li>
-                        <li><a href="#">Contact us</a></li>
                         <li><a href="#">Reviews</a></li>
                     </ul>
                 </div>
