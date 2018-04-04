@@ -39,16 +39,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<?php
-				echo $this->element('Navbar/navLoggedIn');
-			?>
-
-		</div>
-
-		<div id="content">
-
+			<?php echo $this->element('Navbar/navLoggedIn'); ?>
 			<?php echo $this->Session->flash(); ?>
 
+		</div>
+		<div id="content">
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">

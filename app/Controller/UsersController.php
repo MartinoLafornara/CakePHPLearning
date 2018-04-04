@@ -104,7 +104,7 @@ class UsersController extends AppController {
     public function check_domain(){
         if($this->request->is('ajax')) {
 
-            $email = $this->request->query('data.User.email');
+            $email = $this->request->query('email');
             $check = preg_match('|^[a-zA-Z0-9.-_]+@[a-zA-Z0-9._]+\.[a-zA-Z0-9]+$|',$email);
             $hostname = explode('@', $email);
             if(count($hostname) > 1){

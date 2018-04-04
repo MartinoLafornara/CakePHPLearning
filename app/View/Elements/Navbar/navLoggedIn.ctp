@@ -7,7 +7,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="#">Test Site</a>
+	  <?= $this->Html->link("BackEnd", array('controller'=>'posts','action' => 'index'), array('class' => 'navbar-brand')); ?>
 	</div>
 	<div class="collapse navbar-collapse" id="navbar-collapse-4">
 	  <ul class="nav navbar-nav navbar-right">
@@ -16,10 +16,9 @@
 			<?php if($userLogged['role'] == 'admin'): ?>
 			<li><?=  $this->Html->link("Lista Utenti", array('controller'=>'users' ,'action' => 'index')); ?> </li>
 			<?php endif; ?>
-
 			<li>
-		  <a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="#nav-collapse4" aria-expanded="false" aria-controls="nav-collapse4">Profile <i class=""></i> </a>
-		</li>
+		    <a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="#nav-collapse4" aria-expanded="false" aria-controls="nav-collapse4">Profile <i class=""></i> </a>
+		    </li>
 	  </ul>
 	  <ul class="collapse nav navbar-nav nav-collapse" role="search" id="nav-collapse4">
 		<!-- <li><a href="#">Support</a></li> -->

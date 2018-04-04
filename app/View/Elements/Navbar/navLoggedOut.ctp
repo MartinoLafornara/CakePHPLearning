@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Test Site</a>
+      <?= $this->Html->link("FrontEnd", array('controller'=>'pages','action' => 'home'), array('class' => 'navbar-brand')); ?>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-2">
       <ul class="nav navbar-nav navbar-right">
@@ -16,8 +16,8 @@
       	<li><?= $this->Html->link('About',array('controller'=>'pages', 'action'=>'about'));?></li>
       	<li><?= $this->Html->link('Contattaci',array('controller'=>'pages', 'action'=>'contact'));?></li>
       	<li>
-      		<a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" data-target="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Login</a>
-    	 </li>
+      	<a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" data-target="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Login</a>
+    	</li>
       </ul>
       <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse2">
         <?= $this->Session->flash('auth'); ?>

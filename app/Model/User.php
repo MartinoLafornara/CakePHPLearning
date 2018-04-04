@@ -72,7 +72,7 @@ class User extends AppModel {
     public function beforeSave($options = array()) {
         //Adatta il Date Format per il Database
         if (!empty($this->data['User']['date_birth'])) {
-          $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
+            $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
         }
         // if(isset($this->data['User']['first_name']) && isset($this->data['User']['last_name'])) {
         //     pr('cisono'); exit;
@@ -82,26 +82,26 @@ class User extends AppModel {
         if (isset($this->data[$this->alias]['password'])) {
             $passwordHasher = new BlowfishPasswordHasher();
             $this->data[$this->alias]['password'] = $passwordHasher->hash(
-                $this->data[$this->alias]['password']
+            $this->data[$this->alias]['password']
             );
         }
         return true;
     }
 
     public function dateFormatBeforeSave($dateString) {
-      return DateTime::createFromFormat('d/m/Y', $dateString)->format('Y-m-d');
+        return DateTime::createFromFormat('d/m/Y', $dateString)->format('Y-m-d');
     }
 
     public function alpha($check) {
-      $value = array_values($check);
-      $value = $value[0];
-      return preg_match('|^[a-zA-Z ]*$|', $value);
+        $value = array_values($check);
+        $value = $value[0];
+        return preg_match('|^[a-zA-Z ]*$|', $value);
     }
 
     public function format_password($check) {
-      $value = array_values($check);
-      $value = $value[0];
-      return preg_match('|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#\$@%\*\-])[A-Za-z0-9_#\$@%\*\-]{8,16}$|', $value);
+        $value = array_values($check);
+        $value = $value[0];
+        return preg_match('|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#\$@%\*\-])[A-Za-z0-9_#\$@%\*\-]{8,16}$|', $value);
     }
 
 }

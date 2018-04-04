@@ -3,7 +3,7 @@ $('.input-group.date').datepicker({
     endDate: '-18y',
     language:'it',
     autoclose: 'true',
- });
+});
 
 $('#date_birth').on('change', function (ev) {
     $('#date_birth').trigger('input');
@@ -19,14 +19,14 @@ $('#first_name,#last_name,#email').on('change',function(e){
 });
 
 $('#password').on('keyup',function(){
-      if($('#confirm_password').val()!=''){
-          $('#confirm_password').val('');
-          $('#confirm_password').trigger('input');
+    if($('#confirm_password').val()!=''){
+        $('#confirm_password').val('');
+        $('#confirm_password').trigger('input');
 
-          // 'Trigger Manuale'
-          // $('#confirm_password').parents('div.form-group.has-feedback').removeClass('has-error has-success');
-          // $('#confirm_password').closest('.inputGroupContainer').find('i.form-control-feedback').removeClass('glyphicon-ok gly');
-      }
+        // 'Trigger Manuale'
+        // $('#confirm_password').parents('div.form-group.has-feedback').removeClass('has-error has-success');
+        // $('#confirm_password').closest('.inputGroupContainer').find('i.form-control-feedback').removeClass('glyphicon-ok gly');
+    }
 });
 
 
@@ -77,13 +77,17 @@ $('#signup_form').bootstrapValidator({
                     notEmpty: {
                         message: 'Campo obbligatorio.'
                     },
+                    stringLength : {
+                        min : 1,
+                        message: 'Almeno un carattere'
+                    },
                     emailAddress: {
                         message: " "
                     },
-                    remote: {
-                        url : 'check_domain',
-                        message : 'Email non valida.'
-                    }
+                    // remote: {
+                    //     url : 'check_domain',
+                    //     message : 'Email non valida.'
+                    // }
                     // callback : {
                     //     message: 'prova message',
                     //     callback: function (value, validator) {
@@ -119,12 +123,9 @@ $('#signup_form').bootstrapValidator({
                             var insert = moment(m);
                             var fine = moment(new Date()).format('YYYY/MM/DD');
                             var inizio = moment(new Date()).subtract(18, 'years').format('YYYY/MM/DD');
-                            //console.log(insert);
-                            //console.log(inizio,'inizio');
-                            //console.log(fine,'fine');
                             var inizio_datepicker = moment(new Date()).subtract(100, 'years').format('YYYY/MM/DD');
                             if (insert.isAfter(fine)||insert.isBefore(inizio_datepicker)) {
-                                return{
+                                return {
                                     valid: false,
                                     message : ' '
                                 }
@@ -171,13 +172,25 @@ $('#signup_form').bootstrapValidator({
 });
 
 $('#email').on('change', function(){
-    $.get('check_duplicate?email='+$('#email').val(), function(data,response){
-        if(data.valid){
-            //$('#email').parents('div.form-group').removeClass('has-error has-success');
-            //$('#signup_form').data('bootstrapValidator').updateMessage('data[User][email]', 'Email già registrata');
-            $('#signup_form').data('bootstrapValidator').updateStatus('data[User][email]', 'INVALID', null);
-        }
-    },'json');
+    if ($('#email').val()!=''){
+        $.get('check_duplicate?email='+$('#email').val(), function(data,response){
+            if(data.valid){
+                //console.log('duplicato');
+                //$('#email').parents('div.form-group').removeClass('has-error has-success');
+                //$('#email').parents('div.form-group').addClass('has-error');
+                $('#signup_form').data('bootstrapValidator').updateStatus('data[User][email]', 'INVALID', 'stringLength');
+                $('#signup_form').data('bootstrapValidator').updateMessage('data[User][email]', 'stringLength', 'Email già registrata.');
+
+            }
+        },'json');
+
+        $.get('check_domain?email='+$('#email').val(), function(data,response){
+            if(!data.valid){
+                $('#signup_form').data('bootstrapValidator').updateStatus('data[User][email]', 'INVALID', 'stringLength');
+                $('#signup_form').data('bootstrapValidator').updateMessage('data[User][email]', 'stringLength', 'Email non valida.');
+            }
+        },'json');
+    }
 });
 
 

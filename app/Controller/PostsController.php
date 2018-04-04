@@ -10,8 +10,8 @@ class PostsController extends AppController {
         $conditions = [];
         //$var = [];
         if($this->Auth->user('role') != 'admin'){
-          $conditions = ['Post.user_id' => $this->Auth->user('id')];
-          //$var=['User.id' => $this->Auth->user('id')];
+            $conditions = ['Post.user_id' => $this->Auth->user('id')];
+            //$var=['User.id' => $this->Auth->user('id')];
         }
         $this->set('posts',$this->Post->find('all', array('conditions' => $conditions)));
         //$this->set('utenti',$this->User->find('all', array('conditions' => $var)));
@@ -25,22 +25,21 @@ class PostsController extends AppController {
     }
 
     public function view($id = null) {
-      if (!$id) {
-          throw new NotFoundException(__('Post Invalido'));
-      }
+        if (!$id) {
+            throw new NotFoundException(__('Post Invalido'));
+        }
 
-      $post = $this->Post->findById($id);
-      if (!$post) {
-          throw new NotFoundException(__('Post Invalido'));
-      }
-      $this->set('post', $post);  //$post è la variabile settata per la view 'view.ctp'
+        $post = $this->Post->findById($id);
+        if (!$post) {
+            throw new NotFoundException(__('Post Invalido'));
+        }
+        $this->set('post', $post);  //$post è la variabile settata per la view 'view.ctp'
     }
 
 
     public function isAuthorized($user) {
 
         // parent::isAuthorized($user);
-
         // All registered users can add posts
         if ($this->action === 'add') {
             return true;
