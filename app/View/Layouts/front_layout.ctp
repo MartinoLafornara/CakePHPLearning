@@ -30,8 +30,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('meta');
 
 		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css');
+		echo $this->Html->css('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css');
 		echo $this->Html->css('front_layout.css');
-
 
 		echo $this->fetch('css');
 
@@ -50,17 +50,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php
-				echo $cakeVersion;
-				?>
-			</p>
+
+		<?php echo $this->element('Footer/footerGlobal'); ?>
+
 		</div>
 	</div>
 	<?= $this->Html->script('https://code.jquery.com/jquery-1.11.1.min.js'); ?>
