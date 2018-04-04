@@ -7,7 +7,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <?= $this->Html->link("FrontEnd", array('controller'=>'pages','action' => 'home'), array('class' => 'navbar-brand')); ?>
+      <?php
+      echo $this->Html->link("#PostIT",array('controller'=>'pages','action' => 'home'), array('class' => 'navbar-brand'));
+      ?>
+
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-2">
       <ul class="nav navbar-nav navbar-right">

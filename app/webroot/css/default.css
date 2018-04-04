@@ -16,10 +16,9 @@
 .btn.btn-outline { background-color: transparent; }
 
 /* NavBar */
-.navbar-default { margin: 0px !important; }
 .navbar {
     border-radius: 0px !important;
-    margin-bottom: 0px !important;
+    margin: 0px !important;
 }
 
 /* Alert Flash Message*/
