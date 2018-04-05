@@ -48,7 +48,68 @@
 }
 
 /* Background */
-html, body {
+/*html, body {
     background-image: url('../../img/HomePage.jpg');
     background-size: cover;
+}*/
+
+#content {
+    padding-top: 0;
+}
+
+/* Prima Sezione */
+
+header.masthead {
+    background-image: url('../../img/HomePage.jpg');
+    background-size: cover;
+    height: 100vh;
+    min-height: 650px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.text-white {
+    color: #fff!important;
+}
+
+.my-auto {
+    height:100%
+}
+
+.mx-auto{
+    display: block;
+    width : 100%;
+    margin-left: auto!important;
+    margin-right: auto!important;
+}
+
+header.masthead hr {
+    max-width: 50px;
+    border-width: 3px;
+    border-color: #333333;
+}
+
+.title {
+    font-family: Indie Flower;
+    text-shadow: 2px 2px 4px black;
+    font-size: 40px;
+}
+
+.description {
+    font-family: Indie Flower;
+    font-size: 30px;
+    text-shadow: 2px 2px 4px black;
+}
+
+.masthead .btn{
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #cd843f;
+    border-color: black;
+    font-family: Indie Flower;
+    font-size: 17px;
+}
+
+.masthead .btn:hover{
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.22);
 }

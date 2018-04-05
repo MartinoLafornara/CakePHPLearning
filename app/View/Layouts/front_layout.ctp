@@ -33,7 +33,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css');
 		echo $this->Html->css('https://fonts.googleapis.com/css?family=Indie+Flower');
 		echo $this->Html->css('front_layout.css');
-		//echo $this->Html->css('pages/home.css');
 
 		echo $this->fetch('css');
 
@@ -59,7 +58,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</div>
 	<?= $this->Html->script('https://code.jquery.com/jquery-1.11.1.min.js'); ?>
 	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'); ?>
-	<?= $this->Html->script('front_layout.js'); ?>
 	<?= $this->fetch('script'); ?>
 </body>
 </html>
