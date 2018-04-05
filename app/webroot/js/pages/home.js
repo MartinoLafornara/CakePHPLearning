@@ -14,7 +14,7 @@ $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     }
 });
 
-// Item della navbar responsive in base alla sezione 
+// Item della navbar responsive in base alla sezione
 $('body').scrollspy({
     target: '#mainNav',
     offset: 52

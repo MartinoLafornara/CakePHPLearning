@@ -32,9 +32,9 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-  public $components = array(
-      'Session',
-      'Auth' => array(
+    public $components = array(
+        'Session',
+        'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'posts',
                 'action' => 'index'
@@ -58,28 +58,48 @@ class AppController extends Controller {
                 'action' => 'index',
                 'prefix' => false
             )
+        ),'Paginator'
+    );
+
+    public $paginate = array(
+        'User' => array (
+            'fields' => array('User.id', 'User.first_name','User.last_name'
+            ),
+            'maxLimit' => 2,
+            'order' => array(
+                'User.id' => 'desc'
+            )
+        ),
+        'Post' => array (
+            'fields' => array(
+                'Post.id','Post.title','Post.created','User.first_name','User.last_name'
+            ),
+            'maxLimit' => 3,
+            'order' => array (
+                'Post.created' => 'desc'
+            )
         )
     );
 
-  public function beforeFilter() {
-    $this->Auth->allow('index', 'view');
-    $this->set('userLogged', $this->Auth->user());
-  }
-
-  public function beforeRender() {
-    if (!$this->Session->read('Auth.User')){
-      //$this->set('isLogged',true);
-      $this->layout = 'front_layout';
+    public function beforeFilter() {
+        $this->Auth->allow('index', 'view');
+        $this->set('userLogged', $this->Auth->user());
     }
-  }
 
-  public function isAuthorized($user) {
-    // Admin can access every action
-    if (isset($user['role']) && $user['role'] === 'admin') {
-        return true;
+    public function beforeRender() {
+        if (!$this->Session->read('Auth.User')){
+            //$this->set('isLogged',true);
+            $this->layout = 'front_layout';
+        }
     }
-    // Default deny
-    return false;
-  }
+
+    public function isAuthorized($user) {
+        // Admin can access every action
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+        // Default deny
+        return false;
+    }
 
 }

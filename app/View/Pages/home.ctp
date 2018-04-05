@@ -14,7 +14,7 @@
             <div class="col-lg-8 mx-auto ">
                 <p class='description'>Blog Site</p>
                 <?php
-                echo $this->Html->link('About Us','#about',array('class' => 'btn btn-primary btn-outline btn-xl btn-circle js-scroll-trigger'))
+                echo $this->Html->link('About Us','#about',array('class' => 'btn btn-light btn-circle js-scroll-trigger'))
                 ?>
 
             </div>
