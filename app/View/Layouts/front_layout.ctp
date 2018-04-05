@@ -31,7 +31,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css');
 		echo $this->Html->css('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css');
-		echo $this->Html->css('https://fonts.googleapis.com/css?family=Indie+Flower');
+		echo $this->Html->css('https://fonts.googleapis.com/css?family=Indie+Flower|Poor+Story');
 		echo $this->Html->css('front_layout.css');
 
 		echo $this->fetch('css');
