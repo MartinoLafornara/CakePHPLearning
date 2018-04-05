@@ -16,6 +16,11 @@ class PostsController extends AppController {
         $this->set('posts',$this->Post->find('all', array('conditions' => $conditions)));
         //$this->set('utenti',$this->User->find('all', array('conditions' => $var)));
 
+        /*Paginator*/
+        $this->Paginator->settings = $this->paginate;
+        $data = $this->Paginator->paginate('Post');
+        $this->set('data', $data);
+
     }
 
     public function beforeFilter(){

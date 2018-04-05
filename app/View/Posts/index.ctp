@@ -3,6 +3,7 @@
 <!-- <h1>Test CakePHP 2.5.7</h1> -->
 <pre>
 <?php print_r($userLogged); ?>
+<?php print_r($data); ?>
 </pre>
 
 <table class="table table-hover table-striped">
