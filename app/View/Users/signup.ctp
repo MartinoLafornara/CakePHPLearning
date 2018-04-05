@@ -1,5 +1,9 @@
 <!-- app/View/Users/add.ctp -->
-<?php $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css',array('inline' => false)); ?>
+<?php
+
+$this->Html->css('users/signup.css',array('inline' => false));
+
+$this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css',array('inline' => false)); ?>
 <?php $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.2/css/bootstrapValidator.css',array('inline' => false)); ?>
 
 <?php
@@ -13,7 +17,7 @@
 ?>
 
 
-<?= $this->Form->create('User', array('class'=>'well form-horizontal','id'=>'contact_form','action'=>'signup','id'=>'signup_form')); ?>
+<?= $this->Form->create('User', array('class'=>'form-horizontal','id'=>'contact_form','action'=>'signup','id'=>'signup_form')); ?>
 <!-- Form Name -->
 <legend><center><h2><b><?=  __('Registrazione'); ?></b></h2></center></legend><br>
 

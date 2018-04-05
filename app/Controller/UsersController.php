@@ -14,7 +14,7 @@ class UsersController extends AppController {
     public function beforeRender(){
         parent::beforeRender();
         if(in_array($this->action, array('signup'))) {
-            $this->layout = 'front_layout';
+            $this->layout = 'front_layout_2';
         }
     }
 

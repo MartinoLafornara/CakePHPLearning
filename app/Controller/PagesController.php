@@ -53,10 +53,6 @@ class PagesController extends AppController {
 
 	}
 
-	public function about(){
-
-	}
-
 	public function contact(){
 
 	}

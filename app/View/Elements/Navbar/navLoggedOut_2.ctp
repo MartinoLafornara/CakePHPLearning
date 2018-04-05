@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" id='mainNav'>
+<nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
@@ -14,10 +14,8 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-2">
       <ul class="nav navbar-nav navbar-right">
-        <li><?= $this->Html->link('Home', '#home', array('class' => 'js-scroll-trigger'));?></li>
-      	<li><?= $this->Html->link('Signup',array('controller'=>'users', 'action'=>'signup'));?></li>
-        <li><?= $this->Html->link('About', '#about', array('class' => 'js-scroll-trigger'));?></li>
-        <li><?= $this->Html->link('Contattaci',array('controller'=>'pages', 'action'=>'contact'));?></li>
+        <li><?= $this->Html->link('Home',array('controller' => 'pages', 'action' => 'home'));?></li>
+      	<li><?= $this->Html->link('Signup',array('controller' => 'users', 'action' => 'signup'));?></li>
 
         <?php if(isset($userLogged)): ?>
             <li>

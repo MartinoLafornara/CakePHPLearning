@@ -32,7 +32,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css');
 		echo $this->Html->css('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css');
 		echo $this->Html->css('https://fonts.googleapis.com/css?family=Indie+Flower|Poor+Story');
-		echo $this->Html->css('front_layout.css');
+		echo $this->Html->css('front_layout_2.css');
+		//echo $this->Html->css('pages/home');
 
 		echo $this->fetch('css');
 	?>
@@ -41,7 +42,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<?php echo $this->element('Navbar/navLoggedOut'); ?>
+			<?php echo $this->element('Navbar/navLoggedOut_2'); ?>
 			<?php echo $this->Session->flash(); ?>
 		</div>
 
@@ -51,9 +52,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 		<div id="footer">
 
-		<?php
-		echo $this->element('Footer/footerGlobal');
-		?>
+		<?php echo $this->element('Footer/footerGlobal'); ?>
 
 		</div>
 	</div>
