@@ -7,7 +7,7 @@
         <div class="row" style='padding-top:30%'>
             <div class="col-lg-10 mx-auto">
                 <h1 class='title'>
-                    <strong>PostITADESSO</strong>
+                    <strong>PostIt</strong>
                 </h1>
                 <hr>
             </div>
