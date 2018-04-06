@@ -20,12 +20,12 @@ class UsersController extends AppController {
 
     public function index() {
         $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
+        //$this->set('users', $this->paginate());
 
         /*Paginator*/
         $this->Paginator->settings = $this->paginate;
-        $data = $this->Paginator->paginate('User');
-        $this->set('data', $data);
+        //$data = $this->Paginator->paginate('User');
+        $this->set('users', $this->Paginator->paginate('User'));
 
         //$this->set('prova', $this->User->find('all',array('recursive' => 1)));
     }

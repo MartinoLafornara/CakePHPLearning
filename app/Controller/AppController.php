@@ -63,11 +63,11 @@ class AppController extends Controller {
 
     public $paginate = array(
         'User' => array (
-            'fields' => array('User.id', 'User.first_name','User.last_name'
+            'fields' => array('User.first_name','User.last_name', 'User.email' ,'User.created'
             ),
-            'maxLimit' => 2,
+            'maxLimit' => 5,
             'order' => array(
-                'User.id' => 'desc'
+                'User.created' => 'desc'
             )
         ),
         'Post' => array (

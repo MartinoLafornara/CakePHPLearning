@@ -1,8 +1,6 @@
 <!-- app/View/Users/add.ctp -->
 <?php
 
-$this->Html->css('users/signup.css',array('inline' => false));
-
 $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css',array('inline' => false)); ?>
 <?php $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.2/css/bootstrapValidator.css',array('inline' => false)); ?>
 

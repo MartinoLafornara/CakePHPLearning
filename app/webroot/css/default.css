@@ -32,3 +32,34 @@
     .navbar .nav-collapse .navbar-form { margin: 0; }
     .nav-collapse>li { float: none; }
 }
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+/* CSS per posizionamento Footer ed elementi*/
+
+html,body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
+#header {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+}
+#content {
+    height: 100vh;
+    padding-top: 52px;
+    /* Height of the footer */
+	padding-bottom: 289px;
+    background-color: #eee;
+}
+#footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
