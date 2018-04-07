@@ -1,13 +1,16 @@
 <?= $this->Html->script('users/index.js',array('inline' => false));?>
 
-<div class="jumbotron">
+<div class="container-fluid">
     <h2>Lista Utenti</h2>
-    <hr class="my-4">
-    <?php
-    echo $this->Paginator->counter(
-        '{:start} - {:end}'
-    );
-    ?>
+    <hr>
+    <div class='pagination'>
+        <?php
+        echo $this->Paginator->counter(
+            '{:start} - {:end}'
+        );
+        ?>
+
+    </div>
 
     <table class="table table-hover table-striped table-bordered">
         <thead>
@@ -24,7 +27,7 @@
         </thead>
 
         <?php foreach ($users as $user): ?>
-            <tr class='clickable-row'>
+            <tr class='clickable-row' data-href="users/view/<?= $user['User']['id']?>">
                 <td>
                 <?php  //$this->Html->link($user['User']['first_name'], array('action' => 'view', $user['User']['id']));  ?>
                 <?php echo $user['User']['first_name']; ?>

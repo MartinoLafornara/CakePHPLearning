@@ -58,26 +58,6 @@ class AppController extends Controller {
                 'action' => 'index',
                 'prefix' => false
             )
-        ),'Paginator'
-    );
-
-    public $paginate = array(
-        'User' => array (
-            'fields' => array('User.first_name','User.last_name', 'User.email' ,'User.created'
-            ),
-            'maxLimit' => 5,
-            'order' => array(
-                'User.created' => 'desc'
-            )
-        ),
-        'Post' => array (
-            'fields' => array(
-                'Post.id','Post.title','Post.created','User.first_name','User.last_name'
-            ),
-            'maxLimit' => 3,
-            'order' => array (
-                'Post.created' => 'desc'
-            )
         )
     );
 

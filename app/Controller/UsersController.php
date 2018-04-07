@@ -4,6 +4,19 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
+    public $components = array('Paginator');
+
+    public $paginate = array(
+        'User' => array (
+            'fields' => array('User.first_name','User.last_name', 'User.email' ,'User.created'
+            ),
+            'maxLimit' => 5,
+            'order' => array(
+                'User.created' => 'desc'
+            )
+        )
+    );
+
     public function beforeFilter() {
       parent::beforeFilter();
       // Allow users to register and logout.
@@ -20,11 +33,9 @@ class UsersController extends AppController {
 
     public function index() {
         $this->User->recursive = 0;
-        //$this->set('users', $this->paginate());
 
         /*Paginator*/
         $this->Paginator->settings = $this->paginate;
-        //$data = $this->Paginator->paginate('User');
         $this->set('users', $this->Paginator->paginate('User'));
 
         //$this->set('prova', $this->User->find('all',array('recursive' => 1)));

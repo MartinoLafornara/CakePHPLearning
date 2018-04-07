@@ -3,6 +3,19 @@
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form');
     //public $uses = array('User');
+    public $components = array('Paginator');
+
+    public $paginate = array(
+        'Post' => array (
+            'fields' => array(
+                'Post.id','Post.title','Post.created','User.first_name','User.last_name'
+            ),
+            'maxLimit' => 3,
+            'order' => array (
+                'Post.created' => 'desc'
+            )
+        )
+    );
 
     public function index() {
 
