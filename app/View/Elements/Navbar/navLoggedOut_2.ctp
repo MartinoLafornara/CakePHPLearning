@@ -15,6 +15,7 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-2">
       <ul class="nav navbar-nav navbar-right">
         <li><?= $this->Html->link('Home',array('controller' => 'pages', 'action' => 'home'));?></li>
+        <li><?= $this->Html->link('About','/#about');?></li>
       	<li><?= $this->Html->link('Signup',array('controller' => 'users', 'action' => 'signup'));?></li>
 
         <?php if(isset($userLogged)): ?>

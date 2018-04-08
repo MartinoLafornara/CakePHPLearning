@@ -1,4 +1,4 @@
-<?php //echo  $this->Html->script('users/index.js',array('inline' => false));?>
+<?php echo  $this->Html->script('users/index.js',array('inline' => false));?>
 
 <div class="container-fluid">
     <h2>Lista Utenti</h2>
@@ -27,14 +27,14 @@
         </thead>
 
         <?php foreach ($users as $user): ?>
-            <tr class='clickable-row'>
+            <tr class='clickable-row' data-href="users/view/<?= $user['User']['id'] ?>">
                 <td>
                 <?php  //$this->Html->link($user['User']['first_name'], array('action' => 'view', $user['User']['id']));  ?>
-                <?php echo $user['User']['first_name']; ?>
+                <?= $user['User']['first_name']; ?>
                 </td>
                 <td>
                 <?php //$this->Html->link($user['User']['last_name'], array('action' => 'view', $user['User']['id']));  ?>
-                <?php echo $user['User']['last_name']; ?>
+                <?= $user['User']['last_name']; ?>
                 </td>
                 <td>
                 <?= $user['User']['email'] ?>

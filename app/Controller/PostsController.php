@@ -20,19 +20,20 @@ class PostsController extends AppController {
     public function index() {
 
         //$this->loadModel('User');
-        $conditions = [];
+        //$conditions = [];
         //$var = [];
         if($this->Auth->user('role') != 'admin'){
-            $conditions = ['Post.user_id' => $this->Auth->user('id')];
+            $this->Paginator->settings = array(
+                'conditions' => array('Post.user_id' => $this->Auth->user('id'))
+            );
+            //$conditions = ['Post.user_id' => $this->Auth->user('id')];
             //$var=['User.id' => $this->Auth->user('id')];
         }
-        $this->set('posts',$this->Post->find('all', array('conditions' => $conditions)));
+        //$this->set('posts',$this->Post->find('all', array('conditions' => $conditions)));
         //$this->set('utenti',$this->User->find('all', array('conditions' => $var)));
 
         /*Paginator*/
-        $this->Paginator->settings = $this->paginate;
-        $data = $this->Paginator->paginate('Post');
-        $this->set('data', $data);
+        $this->set('posts', $this->Paginator->paginate('Post'));
 
     }
 
