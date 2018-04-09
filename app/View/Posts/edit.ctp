@@ -13,7 +13,7 @@
             </div>
             </fieldset>
             <?= $this->Form->input('id', array('type' => 'hidden')); ?>
-            <?= $this->Form->submit(__('Aggiungi Post'),array('class'=>'btn btn-primary')); ?>
+            <?= $this->Form->submit(__('Modifica'),array('class'=>'btn btn-primary')); ?>
         </fieldset>
     <?= $this->Form->end() ?>
 </div>
