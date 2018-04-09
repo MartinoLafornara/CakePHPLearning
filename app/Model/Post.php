@@ -3,10 +3,14 @@
 class Post extends AppModel {
     public $validate = array(
         'title' => array(
-            'rule' => 'notEmpty'
+            'rule' => 'alphaNumeric',
+            'allowEmpty' => false,
+            'required' => true
         ),
         'body' => array(
-            'rule' => 'notEmpty'
+            'rule' => 'alphaNumeric',
+            'allowEmpty' => false,
+            'required' => true
         )
     );
 

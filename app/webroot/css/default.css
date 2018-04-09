@@ -51,13 +51,20 @@ html,body {
     z-index: 99;
     width: 100%;
 }
+
+#container {
+	min-height:100%;
+	position:relative;
+}
+
 #content {
     height: 100vh;
     padding-top: 52px;
     /* Height of the footer */
-	padding-bottom: 289px;
+	padding-bottom: 50px;
     background-color: #eee;
 }
+
 #footer {
 	position:absolute;
 	bottom:0;

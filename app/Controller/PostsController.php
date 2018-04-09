@@ -85,7 +85,7 @@ class PostsController extends AppController {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
             if ($this->Post->save($this->request->data)) {
                 $this->Session->setFlash(__('Il tuo post è stato inserito correttamente!'), 'Flash/success');
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('controller' => 'posts','action' => 'index'));
             }
             $this->Session->setFlash(__('Operazione non eseguita correttamente!'), 'Flash/error');
         }

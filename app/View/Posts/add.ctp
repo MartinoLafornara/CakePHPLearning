@@ -1,9 +1,19 @@
 <!-- File: /app/View/Posts/add.ctp -->
 
-<h1>Aggiungi Post</h1>
-<?php
-  echo $this->Form->create('Post');
-  echo $this->Form->input('title', array('label'=>'Titolo'));
-  echo $this->Form->input('body', array('rows' => '3', 'label'=>'Contenuto'));
-  echo $this->Form->end('Aggiungi');
-?>
+<div class="container-fluid">
+    <h2>Aggiungi Post</h2>
+    <hr />
+    <?= $this->Form->create('Post'); ?>
+        <fieldset>
+            <div class="form-group">
+                <?= $this->Form->input('title',array('label' => 'Titolo','class' => 'form-control','placeholder' => 'Inserisci Titolo')); ?>
+            </div>
+            <div class="form-group">
+                <?= $this->Form->input('body',array('label' => 'Titolo','class' => 'form-control','placeholder' => 'Inserisci Contenuto','type' => 'textarea','rows' => '4')); ?>
+                <small id="BodyHelp" class="form-text text-muted">Inserisci un contenuto sensibile.</small>
+            </div>
+            </fieldset>
+            <?= $this->Form->submit(__('Aggiungi Post'),array('class'=>'btn btn-primary')); ?>
+        </fieldset>
+    <?= $this->Form->end() ?>
+</div>
