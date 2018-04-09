@@ -92,7 +92,9 @@ class UsersController extends AppController {
 
         $this->request->allowMethod('post');
 
-        $this->User->id = $id;
+        //$this->User->id = $id;
+        $this->User->id = $this->request->data('deleteuserid');
+        //pr(!$this->User->exists()); exit;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
