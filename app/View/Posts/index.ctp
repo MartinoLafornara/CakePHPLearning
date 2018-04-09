@@ -7,7 +7,7 @@
 
 
 <div class="container-fluid">
-    <h3>I tuoi Post</h3>
+    <h3>Posts</h3>
     <hr>
     <div class='pagination'>
         <?php
@@ -30,7 +30,7 @@
 <!-- Here's where we loop through our $posts array, printing out post info -->
 
     <?php foreach ($posts as $post): ?>
-        <tr class='clickable-row'>
+        <tr class='clickable-row' data-href="posts/view/<?= $post['Post']['id'] ?>">
             <td>
                 <?php
                     echo $this->Html->link(

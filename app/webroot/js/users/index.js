@@ -1,3 +1,15 @@
+$('.delUser').on('click',function(e){
+    $('#deleteuserid').val($(this).data('userid'));
+    $('#mymodal').css('display', 'block');
+    // console.log('cliccato');
+    e.preventDefault();
+    return false;
+});
+
+$('.closemodal').on('click', function(e){
+    $('#mymodal').css('display', 'none');
+});
+
 $(".clickable-row").on('click', function (e) {
 
     pathname = location.pathname.split('/');
