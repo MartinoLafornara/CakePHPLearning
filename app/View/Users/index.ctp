@@ -1,7 +1,7 @@
 <?php echo  $this->Html->script('users/index.js',array('inline' => false));?>
 
 <div class="container-fluid">
-    <h2>Lista Utenti</h2>
+    <h3>Lista Utenti</h3>
     <hr>
     <div class='pagination'>
         <?php

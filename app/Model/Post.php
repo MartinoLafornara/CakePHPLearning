@@ -3,12 +3,14 @@
 class Post extends AppModel {
     public $validate = array(
         'title' => array(
-            'rule' => 'alphaNumeric',
+            'rule' => array('custom', '/^[a-z0-9[:punct:][:space:]]*$/i'),
+            'message' => 'Sono ammessi solamente caratteri alfabetici, di punteggiatura e spazi.',
             'allowEmpty' => false,
-            'required' => true
+            'required' => true,
         ),
         'body' => array(
-            'rule' => 'alphaNumeric',
+            'rule' => array('custom', '/^[a-z0-9[:punct:][:space:]]*$/i'),
+            'message' => 'Sono ammessi solamente caratteri alfabetici, di punteggiatura e spazi.',
             'allowEmpty' => false,
             'required' => true
         )

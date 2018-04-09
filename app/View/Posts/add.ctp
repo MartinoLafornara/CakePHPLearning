@@ -1,7 +1,7 @@
 <!-- File: /app/View/Posts/add.ctp -->
 
 <div class="container-fluid">
-    <h2>Aggiungi Post</h2>
+    <h3>Aggiungi Post</h3>
     <hr />
     <?= $this->Form->create('Post'); ?>
         <fieldset>

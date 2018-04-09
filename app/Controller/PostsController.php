@@ -11,7 +11,7 @@ class PostsController extends AppController {
                 'Post.id','Post.title','Post.created','User.first_name','User.last_name'
             ),
             'maxLimit' => 3,
-            'order' => array (
+            'order' => array(
                 'Post.created' => 'desc'
             )
         )
@@ -23,16 +23,15 @@ class PostsController extends AppController {
         //$conditions = [];
         //$var = [];
         if($this->Auth->user('role') != 'admin'){
-            $this->Paginator->settings = array(
-                'conditions' => array('Post.user_id' => $this->Auth->user('id'))
-            );
             //$conditions = ['Post.user_id' => $this->Auth->user('id')];
             //$var=['User.id' => $this->Auth->user('id')];
+            $this->paginate['Post']['conditions'] = array('Post.user_id' => $this->Auth->user('id'));
         }
         //$this->set('posts',$this->Post->find('all', array('conditions' => $conditions)));
         //$this->set('utenti',$this->User->find('all', array('conditions' => $var)));
 
         /*Paginator*/
+        $this->Paginator->settings = $this->paginate;
         $this->set('posts', $this->Paginator->paginate('Post'));
 
     }
@@ -69,9 +68,18 @@ class PostsController extends AppController {
         }
 
         // The owner of a post can edit and delete it
-        if (in_array($this->action, array('edit', 'delete'))) {
+        //if (in_array($this->action, array('edit', 'delete'))) {
+        if($this->action === 'edit'){
             $postId = (int) $this->request->params['pass'][0];
             if ($this->Post->isOwnedBy($postId, $user['id'])) {
+                return true;
+            }
+        }
+
+        if($this->action === 'delete'){
+            //pr($this->request); exit;
+            $postId = (int) $this->request->data('deletepostid');
+            if ($this->Post->isOwnedBy($postId,$user['id'])){
                 return true;
             }
         }
@@ -116,11 +124,12 @@ class PostsController extends AppController {
         }
     }
 
-    public function delete($id) {
+    public function delete() {
+        //pr($this->request); exit;
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
-
+        $id = $this->request->data('deletepostid');
         if ($this->Post->delete($id)) {
             $this->Session->setFlash(__('Il post %s è stato eliminato.',h($id)), 'Flash/success');
         } else {

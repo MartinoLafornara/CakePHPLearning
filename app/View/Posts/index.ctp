@@ -3,10 +3,11 @@
 <!-- <h1>Test CakePHP 2.5.7</h1> -->
 
 <?php //print_r($userLogged); ?>
+<?php echo $this->Html->script('posts/index.js',array('inline' => false));?>
 
 
 <div class="container-fluid">
-    <h2>I tuoi Post</h2>
+    <h3>I tuoi Post</h3>
     <hr>
     <div class='pagination'>
         <?php
@@ -46,10 +47,14 @@
                     );
                 ?>
                 <?php
-                    echo $this->Form->postLink(
-                        'Elimina',
-                        array('action' => 'delete', $post['Post']['id']),
-                        array('confirm' => 'Sei sicuro?')
+                    // echo $this->Form->postLink(
+                    //     'Elimina',
+                    //     array('action' => 'delete', $post['Post']['id']),
+                    //     array('confirm' => 'Sei sicuro?','id' => 'delPost')
+                    // );
+                    echo $this->Html->link(
+                        'Elimina','',
+                        array('class' => 'delPost', 'data-postid' => $post['Post']['id'])
                     );
                 ?>
             </td>
@@ -84,6 +89,46 @@
             ));
             ?>
         </ul>
+    </div>
+
+    <div class="modal" id='mymodal'>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <?= $this->Form->button('<span aria-hidden="true">&times;</span>', array(
+                        'type'=>'button',
+                        'class' => 'close',
+                        'data-dismiss' => 'modal',
+                        'class' => 'close closemodal',
+                        'aria-label' => 'Close',
+                        'escape' => false
+                        )
+                    ); ?>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+                    <h5 class="modal-title">Eliminare</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Sicuro di voler eliminare questo post?</p>
+                </div>
+                <div class="modal-footer">
+                    <?php echo $this->Form->create(false,array('controller' => 'posts','action' => 'delete')); ?>
+                    <?= $this->Form->input('deletepostid',array('type'=>'hidden')); ?>
+                    <?php
+                    //echo $this->Form->postLink('Elimina',array('action' => 'delete'),array('class' => 'btn btn-primary'));
+                    ?>
+                    <?= $this->Form->button('Annulla', array(
+                        'type' => 'button',
+                        'class' => 'btn btn-secondary closemodal',
+                        'data-dismiss' => 'modal'
+                        )
+                    ); ?>
+                    <?php echo $this->Form->button('Elimina',array('class' => 'btn btn-primary','type'=>'submit'));?>
+                    <?php echo $this->Form->end(); ?>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
