@@ -70,16 +70,23 @@ class UsersController extends AppController {
     }
 
     public function edit($id = null) {
-        $this->User->id = $id;
+        //$this->User->id = $id;
+        $this->User->read(null, $id);
+        $this->User->set(array(
+            'email' => $this->request->data('User.email'),
+            'password' => $this->request->data('User.password')
+        ));
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-            if ($this->User->save($this->request->data)) {
+            if ($this->User->save()) {
                 $this->Session->setFlash(__('Dati utente modificati!'),'Flash/success');
                 return $this->redirect(array('action' => 'index'));
             }
+            var_dump($this->User->invalidFields()); exit;
             $this->Session->setFlash(__('L\'utente non può essere modificato'),'Flash/error');
+            return $this->redirect(array('action' => 'index'));
         } else {
             $this->request->data = $this->User->findById($id);
             unset($this->request->data['User']['password']);

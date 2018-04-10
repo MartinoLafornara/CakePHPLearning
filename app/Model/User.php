@@ -5,6 +5,9 @@ App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
+    /**
+     * Validazione campi User
+     */
     public $validate = array(
         'first_name' => array(
             'first_name1' => array(
@@ -62,6 +65,9 @@ class User extends AppModel {
         )
     );
 
+    /**
+     *
+     */
     public $hasMany = array(
         'Post' => array(
             'className' => 'Post',
@@ -69,8 +75,18 @@ class User extends AppModel {
         )
     );
 
+    public function beforeValidate($options = array()){
+
+        $dateString = $this->data['User']['date_birth'];
+        if ($this->checkDateTime($dateString,'Y-m-d')){
+            $this->data['User']['date_birth'] = DateTime::createFromFormat('Y-m-d', $dateString)->format('d/m/Y');
+        }
+        return true;
+    }
+
     public function beforeSave($options = array()) {
         //Adatta il Date Format per il Database
+        //var_dump($this->data); exit;
         if (!empty($this->data['User']['date_birth'])) {
             $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
         }
@@ -89,7 +105,9 @@ class User extends AppModel {
     }
 
     public function dateFormatBeforeSave($dateString) {
-        return DateTime::createFromFormat('d/m/Y', $dateString)->format('Y-m-d');
+            // $var = DateTime::createFromFormat('d/m/Y', $dateString);
+            // return ((!empty($var)) ? $var->format('Y-m-d') : $dateString );
+            return DateTime::createFromFormat('d/m/Y', $dateString)->format('Y-m-d');
     }
 
     public function alpha($check) {
@@ -102,6 +120,11 @@ class User extends AppModel {
         $value = array_values($check);
         $value = $value[0];
         return preg_match('|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#\$@%\*\-])[A-Za-z0-9_#\$@%\*\-]{8,16}$|', $value);
+    }
+
+    public function checkDateTime($date, $format = 'Y-m-d H:i:s'){
+        $d = DateTime::createFromFormat($format,$date);
+        return ($d && ($d->format($format)==$date));
     }
 
 }

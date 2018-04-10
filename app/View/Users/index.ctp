@@ -45,10 +45,10 @@
                 </td>
                 <td>
                     <?php
-                        echo $this->Html->link(
-                            'Modifica',
-                            array('action' => 'edit', $user['User']['id'])
-                        );
+                        // echo $this->Html->link(
+                        //     'Modifica',
+                        //     array('action' => 'edit', $user['User']['id'])
+                        // );
                     ?>
                     <?php
                         echo $this->Html->link(
