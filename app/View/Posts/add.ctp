@@ -9,7 +9,7 @@
                 <?= $this->Form->input('title',array('label' => 'Titolo','class' => 'form-control','placeholder' => 'Inserisci Titolo')); ?>
             </div>
             <div class="form-group">
-                <?= $this->Form->input('body',array('label' => 'Titolo','class' => 'form-control','placeholder' => 'Inserisci Contenuto','type' => 'textarea','rows' => '4')); ?>
+                <?= $this->Form->input('body',array('label' => 'Contenuto','class' => 'form-control','placeholder' => 'Inserisci Contenuto','type' => 'textarea','rows' => '4')); ?>
                 <small id="BodyHelp" class="form-text text-muted">Inserisci un contenuto sensibile.</small>
             </div>
             </fieldset>

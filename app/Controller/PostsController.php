@@ -1,4 +1,6 @@
 <?php
+// app/Controller/UsersController.php Eliminare Eventualmente
+App::uses('AppController', 'Controller');
 
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form');

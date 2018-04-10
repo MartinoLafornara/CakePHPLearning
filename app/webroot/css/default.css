@@ -58,7 +58,7 @@ html,body {
 }
 
 #content {
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 52px;
     /* Height of the footer */
 	padding-bottom: 50px;
