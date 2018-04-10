@@ -5,9 +5,11 @@ App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
+
     /**
      * Validazione campi User
      */
+
     public $validate = array(
         'first_name' => array(
             'first_name1' => array(
@@ -66,14 +68,26 @@ class User extends AppModel {
     );
 
     /**
+     *  Collegamento con Model Post.php
      *
+     *  $hasMany -> molteplicità multipla
      */
+
     public $hasMany = array(
         'Post' => array(
             'className' => 'Post',
             'foreignKey' => 'user_id'
         )
     );
+
+    /**
+     * beforeValidate
+     *
+     * Prima della validazione, verifico se il formato della data nascita è 'Y-m-d'.
+     * Se verificato (nel caso della edit di User poichè il formato è quello standard di MySQL),
+     * converte il seguente formato in quello validato dal Model (d/m/Y).
+     *  @return true
+     */
 
     public function beforeValidate($options = array()){
 
@@ -84,15 +98,25 @@ class User extends AppModel {
         return true;
     }
 
+    /**
+     * beforeSave
+     *
+     * Prima di salvare qualsiasi Utente (con la signup o la modifica), verifico
+     * che la data nascita sia settata e successivamente converto il Date Format per
+     * renderlo "leggibile" dal Database MySQL (MySQL format : 'Y-m-d').
+     *
+     * Se settata la password cifro quest'ultima applicando la funzione hash di
+     * BlowfishPasswordHasher.
+     *
+     * @return true
+     */
+
     public function beforeSave($options = array()) {
         //Adatta il Date Format per il Database
         //var_dump($this->data); exit;
         if (!empty($this->data['User']['date_birth'])) {
             $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
         }
-        // if(isset($this->data['User']['first_name']) && isset($this->data['User']['last_name'])) {
-        //     pr('cisono'); exit;
-        // }
 
         // Cifra la password inserita
         if (isset($this->data[$this->alias]['password'])) {
@@ -104,11 +128,29 @@ class User extends AppModel {
         return true;
     }
 
+    /**
+     * dateFormatBeforeSave
+     *
+     * - createFromFormat($formato,$stringadata) -> trasforma la stringa in una data,
+     * nel formato indicato, se possibile
+     * - format($formato) -> trasforma una data nel formato dato in input al metodo.
+     *
+     * @param string $dateString - La data di nascita
+     * @return string - Data nel formato 'Y-m-d'
+     */
+
     public function dateFormatBeforeSave($dateString) {
-            // $var = DateTime::createFromFormat('d/m/Y', $dateString);
-            // return ((!empty($var)) ? $var->format('Y-m-d') : $dateString );
-            return DateTime::createFromFormat('d/m/Y', $dateString)->format('Y-m-d');
+        // $var = DateTime::createFromFormat('d/m/Y', $dateString);
+        // return ((!empty($var)) ? $var->format('Y-m-d') : $dateString );
+        return DateTime::createFromFormat('d/m/Y', $dateString)->format('Y-m-d');
     }
+
+    /**
+     *
+     *
+     *
+     * @return Boolean - il risultato del preg_match
+     */
 
     public function alpha($check) {
         $value = array_values($check);
