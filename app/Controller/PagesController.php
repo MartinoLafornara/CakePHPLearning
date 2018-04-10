@@ -38,27 +38,56 @@ class PagesController extends AppController {
  */
 	public $uses = array();
 
+	/**
+	 * beforeFilter (Override)
+	 *
+	 * Nel momento in cui viene fatto un override di un metodo quest'ultimo viene
+	 * eseguito a discapito dello stesso metodo presente nella classe estesa (APPCONTROLLER).
+	 * parent::beforeRender() => richiama il metodo beforeRender della classe parent.
+	 *
+	 */
+
 	public function beforeFilter(){
 		$this->Auth->allow('home','about','contact');
 		parent::beforeFilter();
 	}
+
+	/**
+	 * beforeRender (Override)
+	 */
 
 	public function beforeRender(){
 		parent::beforeRender();
 		$this->layout = 'front_layout';
 	}
 
+	/**
+	 * home
+	 */
 
 	public function home(){
 
 	}
 
+	/**
+	 * contact
+	 */
+
 	public function contact(){
 
 	}
 
+	/**
+	 * isAuthorized (Override)
+	 *
+	 * Default allow per gli utenti.
+	 *
+	 * @param array $user - Array relativo all'utente che fa la action.
+	 * @return true
+	 */
+
 	public function isAuthorized($user) {
-		return true;
+		return true; // Default allow
 	}
 
 }

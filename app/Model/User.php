@@ -68,9 +68,9 @@ class User extends AppModel {
     );
 
     /**
-     *  Collegamento con Model Post.php
+     * Collegamento con Model Post.php
      *
-     *  $hasMany -> molteplicità multipla
+     * $hasMany -> molteplicità multipla
      */
 
     public $hasMany = array(
@@ -146,10 +146,14 @@ class User extends AppModel {
     }
 
     /**
+     * alpha - Custom Validation Method
      *
+     * Se la rule della validation non è custom viene richiamato un metodo che prenderà
+     * il nome della custom rule. Viene preso il valore ed eseguito un preg_match con
+     * una determinata espressione regolare (Caratteri alfabetici e spazio).
      *
-     *
-     * @return Boolean - il risultato del preg_match
+     * @param array $check - Array ('NameRule' => values)
+     * @return boolean - il risultato del preg_match
      */
 
     public function alpha($check) {
@@ -158,11 +162,37 @@ class User extends AppModel {
         return preg_match('|^[a-zA-Z ]*$|', $value);
     }
 
+    /**
+     * format_password - Custom Validation Method
+     *
+     * Un'altra funzione customizzata per indicare una rule di validazione non di
+     * default. Come per alpha (method) viene eseguito un preg_match con un'altra
+     * espressione regolare (un carattere minuscolo,maiuscolo,un numero,un carattere speciale
+     * e una lunghezza compresa tra 8 e 16 caratteri).
+     *
+     * @param array $check - Array ('NameRule' => values)
+     * @return boolean - il risultato del preg_match
+     */
+
     public function format_password($check) {
         $value = array_values($check);
         $value = $value[0];
         return preg_match('|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#\$@%\*\-])[A-Za-z0-9_#\$@%\*\-]{8,16}$|', $value);
     }
+
+    /**
+     * checkDateTime
+     *
+     * Viene inizializzata una variabile con la data data in input ma nel formato
+     * da confermare. Se la variabile ha lo stesso value della data passata in input
+     * (stesso formato) e la variabile ha un valore diverso da false (caso in cui non
+     * si riesce a trasformare la stringa nel formato indicato) il check avrà esito
+     * positivo.
+     *
+     * @param string $date - Data da analizzare
+     * @param string $format - Formato della data da verificare
+     * @return boolean
+     */
 
     public function checkDateTime($date, $format = 'Y-m-d H:i:s'){
         $d = DateTime::createFromFormat($format,$date);
