@@ -1,22 +1,38 @@
+/**
+ *   Popup del calendario durante l'inserimento della data di nascita.
+ */
 $('.input-group.date').datepicker({
     startDate: '-100y',
     endDate: '-18y',
-    language:'it',
+    language:'it', //se utilizzo datepicker.it.js
     autoclose: 'true',
 });
 
 $('#date_birth').on('change', function (ev) {
     $('#date_birth').trigger('input');
+    // Validazione durante l'evento change.(problema bootstrapValidator)
 });
 
 $('#email').on('change', function (ev) {
     $('#email').trigger('input');
 });
 
-//Più selettori
+/**
+ *   evento Change => quando l'elemento perde il focus.
+ *   - Prende il valore dell'input;
+ *   - Elimina gli spazi finali;
+ *   - Sostituisce eventuali spazi interni (1 o più) in un singolo carattere di spaziantura.
+ */
+
 $('#first_name,#last_name,#email').on('change',function(e){
     $('#'+e.currentTarget.id).val($('#'+e.currentTarget.id).val().trim().replace(new RegExp(' +', 'g'),' '));
 });
+
+/**
+ *    evento keyup => rilascio del tasto
+ *    - resetta il campo 'conferma password';
+ *    - rivalida quel singolo campo con il trigger.
+ */
 
 $('#password').on('keyup',function(){
     if($('#confirm_password').val()!=''){
@@ -36,6 +52,17 @@ $('#password').on('keyup',function(){
     return false;
   });
 */
+
+/**
+ *    bootstrapValidator (Libreria js)
+ *    - Definisco le regole di validazione per ogni songolo campo (name attribute)
+ *
+ *    [Osservazione#1] => è possibile eseguire una callback durante la validazione
+ *     di un singolo campo.
+ *
+ *    [Osservazione#2] => remote si usa per inviare richieste e validare il campo
+ *     in base al risultato di quest'ultima.
+ */
 
 $('#signup_form').bootstrapValidator({
         // feedbackIcons: {
@@ -170,6 +197,13 @@ $('#signup_form').bootstrapValidator({
             }
         }
 });
+
+/**
+ * evento change di #email
+ *
+ * - Faccio una get a un metodo interno (controllo duplicati email).
+ * - Faccio una get per verificare il dominio email.
+ */
 
 $('#email').on('change', function(){
     if ($('#email').val()!=''){

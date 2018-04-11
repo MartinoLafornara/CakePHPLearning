@@ -1,3 +1,7 @@
+/**
+ *   Javascript simile a posts/index.js
+ */
+ 
 $('.delUser').on('click',function(e){
     $('#deleteuserid').val($(this).data('userid'));
     $('#mymodal').css('display', 'block');
