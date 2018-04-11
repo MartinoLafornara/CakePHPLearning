@@ -90,10 +90,11 @@ class User extends AppModel {
      */
 
     public function beforeValidate($options = array()){
-
-        $dateString = $this->data['User']['date_birth'];
-        if ($this->checkDateTime($dateString,'Y-m-d')){
-            $this->data['User']['date_birth'] = DateTime::createFromFormat('Y-m-d', $dateString)->format('d/m/Y');
+        if(isset($this->data['User']['date_birth'])){
+            $dateString = $this->data['User']['date_birth'];
+            if ($this->checkDateTime($dateString,'Y-m-d')){
+                $this->data['User']['date_birth'] = DateTime::createFromFormat('Y-m-d', $dateString)->format('d/m/Y');
+            }
         }
         return true;
     }
