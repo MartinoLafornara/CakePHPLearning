@@ -28,19 +28,19 @@
         </thead>
 
         <?php foreach ($users as $user): ?>
-            <tr class='clickable-row' data-href="users/view/<?= $user['User']['id'] ?>">
-                <td>
+            <tr data-href="users/view/<?= $user['User']['id'] ?>">
+                <td class='clickable-row'>
                 <?php  //$this->Html->link($user['User']['first_name'], array('action' => 'view', $user['User']['id']));  ?>
                 <?= $user['User']['first_name']; ?>
                 </td>
-                <td>
+                <td class='clickable-row'>
                 <?php //$this->Html->link($user['User']['last_name'], array('action' => 'view', $user['User']['id']));  ?>
                 <?= $user['User']['last_name']; ?>
                 </td>
-                <td>
+                <td class='clickable-row'>
                 <?= $user['User']['email'] ?>
                 </td>
-                <td>
+                <td class='clickable-row'>
                 <?= $user['User']['created'] ?>
                 </td>
                 <td>
@@ -53,7 +53,7 @@
                     <?php
                         echo $this->Html->link(
                             'Elimina','',
-                            array('class' => 'delUser', 'data-userid' => $user['User']['id'])
+                            array('class' => 'delUser btn btn-sm btn-outline-secondary', 'data-userid' => $user['User']['id'])
                         );
                     ?>
                 </td>
@@ -123,5 +123,4 @@
             </div>
         </div>
     </div>
-
 </div>

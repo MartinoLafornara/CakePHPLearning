@@ -22,16 +22,16 @@
         <thead>
             <tr class ='info'>
                 <th>Titolo</th>
-                <th>Azioni</th>
                 <th>Data Inserimento</th>
+                <th>Azioni</th>
             </tr>
         </thead>
 
 <!-- Here's where we loop through our $posts array, printing out post info -->
 
     <?php foreach ($posts as $post): ?>
-        <tr class='clickable-row' data-href="posts/view/<?= $post['Post']['id'] ?>">
-            <td>
+        <tr data-href="posts/view/<?= $post['Post']['id'] ?>">
+            <td class='clickable-row'>
                 <?php
                     echo $this->Html->link(
                         $post['Post']['title'],
@@ -39,11 +39,15 @@
                     );
                 ?>
             </td>
+            <td class='clickable-row'>
+                <?php echo $post['Post']['created']; ?>
+            </td>
             <td>
                 <?php
                     echo $this->Html->link(
                         'Modifica',
-                        array('action' => 'edit', $post['Post']['id'])
+                        array('action' => 'edit', $post['Post']['id']),
+                        array('class' => 'btn btn-sm btn-outline-secondary')
                     );
                 ?>
                 <?php
@@ -54,12 +58,9 @@
                     // );
                     echo $this->Html->link(
                         'Elimina','',
-                        array('class' => 'delPost', 'data-postid' => $post['Post']['id'])
+                        array('class' => 'delPost btn btn-sm btn-outline-danger', 'data-postid' => $post['Post']['id'])
                     );
                 ?>
-            </td>
-            <td>
-                <?php echo $post['Post']['created']; ?>
             </td>
         </tr>
     <?php endforeach; ?>
