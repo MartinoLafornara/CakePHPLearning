@@ -28,42 +28,43 @@
         </thead>
 
 <!-- Here's where we loop through our $posts array, printing out post info -->
-
-    <?php foreach ($posts as $post): ?>
-        <tr data-href="posts/view/<?= $post['Post']['id'] ?>">
-            <td class='clickable-row'>
-                <?php
-                    echo $this->Html->link(
-                        $post['Post']['title'],
-                        array('action' => 'view', $post['Post']['id'])
-                    );
-                ?>
-            </td>
-            <td class='clickable-row'>
-                <?php echo $post['Post']['created']; ?>
-            </td>
-            <td>
-                <?php
-                    echo $this->Html->link(
-                        'Modifica',
-                        array('action' => 'edit', $post['Post']['id']),
-                        array('class' => ' btn btn-sm btn-outline-secondary')
-                    );
-                ?>
-                <?php
-                    // echo $this->Form->postLink(
-                    //     'Elimina',
-                    //     array('action' => 'delete', $post['Post']['id']),
-                    //     array('confirm' => 'Sei sicuro?','id' => 'delPost')
-                    // );
-                    echo $this->Html->link(
-                        'Elimina','',
-                        array('class' => 'delPost btn btn-sm btn-outline-danger', 'data-postid' => $post['Post']['id'])
-                    );
-                ?>
-            </td>
-        </tr>
-    <?php endforeach; ?>
+        <tbody>
+        <?php foreach ($posts as $post): ?>
+            <tr data-href="posts/view/<?= $post['Post']['id'] ?>">
+                <td class='clickable-row'>
+                    <?php
+                        echo $this->Html->link(
+                            $post['Post']['title'],
+                            array('action' => 'view', $post['Post']['id'])
+                        );
+                    ?>
+                </td>
+                <td class='clickable-row'>
+                    <?php echo $post['Post']['created']; ?>
+                </td>
+                <td>
+                    <?php
+                        echo $this->Html->link(
+                            'Modifica',
+                            array('action' => 'edit', $post['Post']['id']),
+                            array('class' => ' btn btn-sm btn-outline-secondary')
+                        );
+                    ?>
+                    <?php
+                        // echo $this->Form->postLink(
+                        //     'Elimina',
+                        //     array('action' => 'delete', $post['Post']['id']),
+                        //     array('confirm' => 'Sei sicuro?','id' => 'delPost')
+                        // );
+                        echo $this->Html->link(
+                            'Elimina','',
+                            array('class' => 'delPost btn btn-sm btn-outline-danger', 'data-postid' => $post['Post']['id'])
+                        );
+                    ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
     </table>
 
     <div>

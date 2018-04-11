@@ -26,7 +26,7 @@
                 <th>Azioni</th>
             </tr>
         </thead>
-
+        <tbody>
         <?php foreach ($users as $user): ?>
             <tr data-href="users/view/<?= $user['User']['id'] ?>">
                 <td class='clickable-row'>
@@ -59,6 +59,7 @@
                 </td>
             </tr>
         <?php endforeach; ?>
+        </tbody>
     </table>
 
     <div>
