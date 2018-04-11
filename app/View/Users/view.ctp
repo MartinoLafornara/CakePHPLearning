@@ -1,5 +1,6 @@
-
+<pre>
 <h5><?php print_r($user) ?></h5>
+</pre>
 
 
 <div class="container-fluid">
@@ -7,19 +8,6 @@
   		<div class="col-sm-10"><h3><?= $user['User']['first_name'].' '.$user['User']['last_name'] ?></h3></div>
     </div>
     <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-
-          <ul class="list-group">
-            <li class="list-group-item text-muted">Profilo Utente</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Nome</strong></span><?= $user['User']['first_name'] ?></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Cognome</strong></span> <?= $user['User']['last_name'] ?></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span> <?= $user['User']['email'] ?></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Data Nascita</strong></span><?= $user['User']['date_birth'] ?></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Ruolo</strong></span><?= $user['User']['role'] ?></li>
-            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Ultimo accesso</strong></span> 23/07/2016</li> -->
-          </ul>
-          <ul class="list-group">
-        </div>
 
         <!--  aggiunta-->
         <div class="col-sm-9">
@@ -64,6 +52,19 @@
                         <?php echo $this->Form->end(); ?>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-3"><!--left col-->
+
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Informazioni Utente</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Nome</strong></span><?= $user['User']['first_name'] ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Cognome</strong></span> <?= $user['User']['last_name'] ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span> <?= $user['User']['email'] ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Data Nascita</strong></span><?= $user['User']['date_birth'] ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Utente</strong></span><?= $user['User']['role'] ?></li>
+            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Ultimo accesso</strong></span> 23/07/2016</li> -->
+          </ul>
+          <ul class="list-group">
         </div>
     </div>
 </div>
