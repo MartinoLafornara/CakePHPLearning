@@ -53,7 +53,7 @@
                     <?php
                         echo $this->Html->link(
                             'Elimina','',
-                            array('class' => 'delUser btn btn-sm btn-outline-secondary', 'data-userid' => $user['User']['id'])
+                            array('class' => 'delUser btn btn-sm btn-outline-danger', 'data-userid' => $user['User']['id'])
                         );
                     ?>
                 </td>

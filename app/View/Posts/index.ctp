@@ -47,7 +47,7 @@
                     echo $this->Html->link(
                         'Modifica',
                         array('action' => 'edit', $post['Post']['id']),
-                        array('class' => 'btn btn-sm btn-outline-secondary')
+                        array('class' => ' btn btn-sm btn-outline-secondary')
                     );
                 ?>
                 <?php
