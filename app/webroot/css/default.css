@@ -104,3 +104,12 @@ hr {
 table > tbody > tr> td > .btn {
     display: inline;
 }
+
+.col-sm-4.col-sm-offset-4 {
+    display: flex;
+    justify-content: center;
+}
+
+.rightalign {
+    text-align: right;
+}

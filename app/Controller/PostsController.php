@@ -213,9 +213,9 @@ class PostsController extends AppController {
         }
         $id = $this->request->data('deletepostid');
         if ($this->Post->delete($id)) {
-            $this->Session->setFlash(__('Il post %s è stato eliminato.',h($id)), 'Flash/success');
+            $this->Session->setFlash(__('Il post è stato eliminato.'), 'Flash/success');
         } else {
-            $this->Session->setFlash(__('Il post %s non può essere eliminato.',h($id)), 'Flash/error');
+            $this->Session->setFlash(__('Il post non può essere eliminato.'), 'Flash/error');
         }
         return $this->redirect(array('action' => 'index'));
     }

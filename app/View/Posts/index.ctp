@@ -9,14 +9,27 @@
 <div class="container-fluid">
     <h3>Posts</h3>
     <hr>
-    <div class='pagination'>
+    <div class = 'row'>
+        <div class='col-sm-4 col-sm-offset-4'>
         <?php
         echo $this->Paginator->counter(
             '{:start} - {:end}'
-        );
-        ?>
-
+        ); ?>
+        </div>
+        <div class='col-sm-4 rightalign'>
+        <?php
+        echo $this->Html->link(
+            'Aggiungi Post&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-plus"></span>', array(
+                'controller' => 'posts',
+                'action' => 'add'
+            ), array(
+                'class' => 'btn btn-sm btn-success',
+                'escape' => false
+            )
+        ); ?>
+        </div>
     </div>
+    <br />
 
     <table class="table table-hover table-striped table-bordered">
         <thead>
@@ -74,7 +87,7 @@
                 'tag' => 'li'
             ));
             if($this->paginator->hasPrev()){
-                echo $this->Paginator->prev(__('Precedente'), array('tag' => 'li'),null,array('class' => 'disabled'));
+                echo $this->Paginator->prev(__('Precedente'), array('tag' => 'li'));
             }
             echo $this->Paginator->numbers(array(
                 'modulus' => 2,
