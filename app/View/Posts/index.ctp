@@ -35,7 +35,7 @@
         <thead>
             <tr class ='info'>
                 <th>Titolo</th>
-                <th>Data Inserimento</th>
+                <th>Ultima Modifica</th>
                 <th>Azioni</th>
             </tr>
         </thead>
@@ -53,7 +53,7 @@
                     ?>
                 </td>
                 <td class='clickable-row'>
-                    <?php echo $post['Post']['created']; ?>
+                    <?php echo $post['Post']['modified']; ?>
                 </td>
                 <td>
                     <?php

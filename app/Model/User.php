@@ -147,6 +147,44 @@ class User extends AppModel {
     }
 
     /**
+     * afterFind - Callback dopo una find (o paginate)
+     *
+     * Dopo aver fatto una ricerca viene impostato un formato data differente
+     * rispetto a quello del database. (Utile per la view).
+     *
+     * [Osservazione] => Il nuovo formato data non viene salvato sul db
+     * (non conforme con lo standard MySql) ma viene utilizzato solo per le View
+     * nelle quali vengono visualizzati i dati prodotti da una ricerca.
+     *
+     * @param array $results - Array relativo ai dati restituiti dall'operazione
+     *              di ricerca (find o paginate) di tutti gli utenti.
+     * @param boolean $primary
+     * @return array $results - Array dei dati di ricerca elaborati.
+     */
+
+    public function afterFind($results, $primary = false) {
+        foreach ($results as $row => $fields) {
+            if (isset($fields['User']['created'])) {
+                $results[$row]['User']['created'] = $this->dateFormatAfterFind($fields['User']['created']);
+            }
+        }
+        return $results;
+    }
+
+    /**
+     * dateFormatAfterFind
+     *
+     * Cambia il formato data del Db nel seguente 'd-m-Y - H:i:s'.
+     *
+     * @param $dateString - La data di creazione utente.
+     * @return string $dateString - La data nel formato 'd-m-Y - H:i:s'.
+     */
+
+    public function dateFormatAfterFind($dateString) {
+        return date('d-m-Y - H:i:s', strtotime($dateString));
+    }
+
+    /**
      * alpha - Custom Validation Method
      *
      * Se la rule della validation non è custom viene richiamato un metodo che prenderà
