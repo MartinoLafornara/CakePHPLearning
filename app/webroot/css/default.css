@@ -113,3 +113,8 @@ table > tbody > tr> td > .btn {
 .rightalign {
     text-align: right;
 }
+
+#changeEmail {
+    display: flex;
+    align-items: flex-end;
+}

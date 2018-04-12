@@ -12,18 +12,20 @@
                 <li><a href="#changePassword" data-toggle="tab">Modifica Password</a></li>
             </ul>
         </div>
-        <div class="col-sm-9">
-            <div class="tab-content col-sm-9">
+        <!-- <div class="col-sm-9"> -->
+        <?php echo $this->Form->create('User',array(
+                "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
+                'inputDefaults' => array(
+                    'div' => false
+                ),
+                'class' => 'col-sm-9'
+            )
+        );
+        ?>
+            <div class="tab-content">
+                <br>
                 <div class="tab-pane active" id="changeEmail">
-                    <?php echo $this->Form->create('User',array(
-                            "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
-                            'inputDefaults' => array(
-                                'div' => false
-                            )
-                        )
-                    );
-                    ?>
-                    <div class="form-group">
+                    <!-- <div class="form-group"> -->
                         <div class="col-xs-6">
                             <?php echo $this->Form->input('email',array(
                                     'label' =>'<label for="UserEmail"><h5>Email</h5></label>',
@@ -33,8 +35,6 @@
                             );
                             ?>
                         </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-xs-6">
                             <?php echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Salva',array(
                                     'class' => 'btn btn-success',
@@ -50,16 +50,10 @@
                             );
                             ?>
                         </div>
-                    </div>
-                    <?php echo $this->Form->end(); ?>
+                    <!-- </div> -->
                 </div>
                 <div class="tab-pane" id="changePassword">
-                    <?php echo $this->Form->create('User',array(
-                            "url" => array('controller' => 'users','action' => 'edit',$user['User']['id'])
-                        )
-                    );
-                    ?>
-                    <div class="form-group">
+                    <!-- <div class="form-group"> -->
                         <div class="col-xs-6">
                             <?php echo $this->Form->input('password',array(
                                     'label' =>'<label for="email"><h4>Password</h4></label>',
@@ -68,11 +62,11 @@
                                 )
                             ); ?>
                         </div>
-                    </div>
-                    <?php echo $this->Form->end(); ?>
+                    <!-- </div> -->
                 </div>
             </div>
-        </div>
+            <?php echo $this->Form->end(); ?>
+        <!-- </div> -->
         <div class="col-sm-3"><!--left col-->
             <ul class="list-group">
                 <li class="list-group-item text-muted">Informazioni Utente</li>
