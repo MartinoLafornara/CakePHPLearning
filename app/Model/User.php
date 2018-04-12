@@ -167,6 +167,9 @@ class User extends AppModel {
             if (isset($fields['User']['created'])) {
                 $results[$row]['User']['created'] = $this->dateFormatAfterFind($fields['User']['created']);
             }
+            if (isset($fields['User']['date_birth'])) {
+                $results[$row]['User']['date_birth'] = $this->dateFormatAfterFind($fields['User']['date_birth']);
+            }
         }
         return $results;
     }
@@ -181,7 +184,7 @@ class User extends AppModel {
      */
 
     public function dateFormatAfterFind($dateString) {
-        return date('d-m-Y - H:i:s', strtotime($dateString));
+        return date('d-m-Y', strtotime($dateString));
     }
 
     /**

@@ -74,6 +74,9 @@ class Post extends AppModel {
             if (isset($fields['Post']['modified'])) {
                 $results[$row]['Post']['modified'] = $this->dateFormatAfterFind($fields['Post']['modified']);
             }
+            if (isset($fields['Post']['created'])) {
+                $results[$row]['Post']['created'] = $this->dateFormatAfterFind($fields['Post']['created']);
+            }
         }
         return $results;
     }
