@@ -62,7 +62,6 @@
             <li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span> <?= $user['User']['email'] ?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Data Nascita</strong></span><?= $user['User']['date_birth'] ?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Utente</strong></span><?= $user['User']['role'] ?></li>
-            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Ultimo accesso</strong></span> 23/07/2016</li> -->
           </ul>
           <ul class="list-group">
         </div>
