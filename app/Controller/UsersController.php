@@ -185,10 +185,10 @@ class UsersController extends AppController {
         }
         if ($this->User->delete()) {
             $this->Session->setFlash(__('Utente rimosso.'),'Flash/success');
-            return $this->redirect(array('action' => 'index'));
+            return $this->redirect($this->referer());
         }
         $this->Session->setFlash(__('Errore, utente non eliminato!'),'Flash/error');
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect($this->referer());
     }
 
     /**

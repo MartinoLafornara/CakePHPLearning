@@ -217,7 +217,7 @@ class PostsController extends AppController {
         } else {
             $this->Session->setFlash(__('Il post non può essere eliminato.'), 'Flash/error');
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect($this->referer());
     }
 
 }
