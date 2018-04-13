@@ -11,62 +11,64 @@
                 <li class='active'><a href="#changeEmail" data-toggle="tab">Modifica Email</a></li>
                 <li><a href="#changePassword" data-toggle="tab">Modifica Password</a></li>
             </ul>
-        </div>
-        <!-- <div class="col-sm-9"> -->
-        <?php echo $this->Form->create('User',array(
-                "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
-                'inputDefaults' => array(
-                    'div' => false
-                ),
-                'class' => 'col-sm-9'
-            )
-        );
+        <?php
+        // echo $this->Form->create('User',array(
+        //         "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
+        //         'inputDefaults' => array(
+        //             'div' => false
+        //         ),
+        //         'class' => 'col-sm-9'
+        //     )
+        // );
         ?>
             <div class="tab-content">
                 <br>
-                <div class="tab-pane active" id="changeEmail">
-                    <!-- <div class="form-group"> -->
-                        <div class="col-xs-6">
-                            <?php echo $this->Form->input('email',array(
-                                    'label' =>'<label for="UserEmail"><h5>Email</h5></label>',
+                <div class="tab-pane active" id='changeEmail'>
+                    <?php
+                    echo $this->Form->create('User',array(
+                            "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
+                            'inputDefaults' => array(
+                                'div' => false
+                            ),
+                            'class' => 'col-xs-12'
+                        )
+                    );
+                    ?>
+                    <?php
+                    echo $this->Form->input('password',array(
+                            'label' =>'<h5>Password</h5>',
+                            'class' => 'form-control',
+                            'type' => 'text',
+                            'value' => 'MArtino98#',
+                        )
+                    );
+                    ?>
+                    <div class="form-group col-xs-3">
+                            <?php
+                            echo $this->Form->input('email',array(
+                                    'label' =>'<h5>Inserisci nuovo indirizzo email</h5>',
                                     'class' => 'form-control',
-                                    'type' => 'email'
+                                    'type' => 'email',
                                 )
                             );
                             ?>
-                        </div>
-                        <div class="col-xs-6">
-                            <?php echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Salva',array(
+                    </div>
+                    <div class="form-group col-xs-6">
+                            <?php
+                            echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia',array(
                                     'class' => 'btn btn-success',
                                     'type' => 'submit',
                                     'escape' => false,
                                 )
                             );
                             ?>
-                            <?php echo $this->Form->button('Ripristina',array(
-                                    'class' => 'btn',
-                                    'type'=>'reset'
-                                )
-                            );
-                            ?>
-                        </div>
+                    </div>
                     <!-- </div> -->
-                </div>
-                <div class="tab-pane" id="changePassword">
-                    <!-- <div class="form-group"> -->
-                        <div class="col-xs-6">
-                            <?php echo $this->Form->input('password',array(
-                                    'label' =>'<label for="email"><h4>Password</h4></label>',
-                                    'class' => 'form-control',
-                                    'type' => 'password'
-                                )
-                            ); ?>
-                        </div>
-                    <!-- </div> -->
+                    <?php echo $this->Form->end(); ?>
                 </div>
             </div>
-            <?php echo $this->Form->end(); ?>
-        <!-- </div> -->
+            <?php //echo $this->Form->end(); ?>
+        </div>
         <div class="col-sm-3"><!--left col-->
             <ul class="list-group">
                 <li class="list-group-item text-muted">Informazioni Utente</li>
@@ -76,8 +78,7 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Data Nascita</strong></span><?= $user['User']['date_birth'] ?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Registrazione</strong></span><?= $user['User']['created'] ?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Utente</strong></span><?= $user['User']['role'] ?></li>
-              </ul>
-            <ul class="list-group">
+            </ul>
         </div>
     </div>
 </div>

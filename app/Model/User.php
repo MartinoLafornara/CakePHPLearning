@@ -116,7 +116,19 @@ class User extends AppModel {
         //Adatta il Date Format per il Database
         //var_dump($this->data); exit;
         if (!empty($this->data['User']['date_birth'])) {
-            $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
+            if (!$this->checkDateTime($this->data['User']['date_birth'],'d-m-Y')) {
+                //Se legge la data di nascita inserita nella registrazione di un nuovo utente.
+                $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
+            }
+            //Se legge la data di nascita durante la edit del User.
+            $this->data['User']['date_birth'] = date('Y-m-d', strtotime($this->data['User']['date_birth']));
+        }
+
+        if(isset($this->data['User']['created'])){
+            //Durante Edit di User
+            if($this->checkDateTime($this->data['User']['created'],'d-m-Y H:i:s')) {
+                $this->data['User']['created'] = date('Y-m-d H:i:s', strtotime($this->data['User']['created']));
+            }
         }
 
         // Cifra la password inserita
@@ -165,7 +177,7 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         foreach ($results as $row => $fields) {
             if (isset($fields['User']['created'])) {
-                $results[$row]['User']['created'] = $this->dateFormatAfterFind($fields['User']['created']);
+                $results[$row]['User']['created'] = $this->dateFormatAfterFind($fields['User']['created'],'d-m-Y H:i:s');
             }
             if (isset($fields['User']['date_birth'])) {
                 $results[$row]['User']['date_birth'] = $this->dateFormatAfterFind($fields['User']['date_birth']);
@@ -183,8 +195,8 @@ class User extends AppModel {
      * @return string $dateString - La data nel formato 'd-m-Y - H:i:s'.
      */
 
-    public function dateFormatAfterFind($dateString) {
-        return date('d-m-Y', strtotime($dateString));
+    public function dateFormatAfterFind($dateString,$dateFormat = 'd-m-Y') {
+        return date($dateFormat , strtotime($dateString));
     }
 
     /**
