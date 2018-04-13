@@ -54,6 +54,16 @@ class UsersController extends AppController {
         }
     }
 
+    public function isAuthorized($user) {
+        if($this->action ==='view'){
+            $userId = (int) $this->request->params['pass'][0];
+            if ($userId == $user['id']){
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
+
     /**
      * index
      *
