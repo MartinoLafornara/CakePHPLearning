@@ -128,17 +128,17 @@ class UsersController extends AppController {
                 throw new NotFoundException(__('Invalid user'));
             }
             $this->User->id = $id;
-            $this->User->read();
+            //$this->User->read();
             //Setto i dati sottoposti a save();
             // $this->request->data['User']['id'] = $id;
-            $this->User->set(array(
-                'email' => $this->request->data('User.email'),
-                'password' => $this->request->data('User.password'),
-                'modified' => date('Y-m-d H:i:s')
-                )
-            );
+            // $this->User->set(array(
+            //     'email' => $this->request->data('User.email'),
+            //     'password' => $this->request->data('User.password'),
+            //     'modified' => date('Y-m-d H:i:s')
+            //     )
+            // );
             //$this->User->save($this->request->data,array('fieldList' => array('email','password')))
-            if ($this->User->save()) {
+            if ($this->User->save($this->request->data,array('fieldList' => array('email')))) {
                 $this->Session->setFlash(__('Dati utente modificati!'),'Flash/success');
                 return $this->redirect(array('action' => 'index'));
             }

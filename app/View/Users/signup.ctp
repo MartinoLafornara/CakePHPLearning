@@ -29,7 +29,7 @@
     <div class="form-group">
         <?= $this->Form->label('first_name','Nome',array('class' =>'col-md-4 control-label','for' => 'first_name')); ?>
         <div class="col-md-4 inputGroupContainer">
-            <div class="input-group" hide>
+            <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <?= $this->Form->input('first_name', array(
                     'placeholder' => 'Nome',

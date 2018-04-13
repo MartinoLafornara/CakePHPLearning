@@ -115,8 +115,14 @@ class User extends AppModel {
     public function beforeSave($options = array()) {
         //Adatta il Date Format per il Database
         //var_dump($this->data); exit;
+        
         if (!empty($this->data['User']['date_birth'])) {
-            if (!$this->checkDateTime($this->data['User']['date_birth'],'d-m-Y')) {
+            $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
+        }
+
+        /* Solo se si usa $this->save->set() */
+        // if (!empty($this->data['User']['date_birth'])) {
+        //     if (!$this->checkDateTime($this->data['User']['date_birth'],'d-m-Y')) {
                 /*
                 *    Se legge la data di nascita inserita nella registrazione di un nuovo utente.
                 *
@@ -125,18 +131,19 @@ class User extends AppModel {
                 *    separatore (/). Se utilizzassi date() in alcune situazioni invertirebbe il numero
                 *    relativo al giorno con quello del mese.
                 */
-                $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
-            }
+            //     /$this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
+            // }
             //Se legge la data di nascita durante la edit del User.
-            $this->data['User']['date_birth'] = date('Y-m-d', strtotime($this->data['User']['date_birth']));
-        }
+        //     $this->data['User']['date_birth'] = date('Y-m-d', strtotime($this->data['User']['date_birth']));
+        // }
 
-        if(isset($this->data['User']['created'])){
-            //Durante Edit di User
-            if($this->checkDateTime($this->data['User']['created'],'d-m-Y H:i:s')) {
-                $this->data['User']['created'] = date('Y-m-d H:i:s', strtotime($this->data['User']['created']));
-            }
-        }
+        /* Solo se si usa $this->save->set() */
+        // if(isset($this->data['User']['created'])){
+        //     //Durante Edit di User
+        //     if($this->checkDateTime($this->data['User']['created'],'d-m-Y H:i:s')) {
+        //         $this->data['User']['created'] = date('Y-m-d H:i:s', strtotime($this->data['User']['created']));
+        //     }
+        // }
 
         // Cifra la password inserita
         if (isset($this->data[$this->alias]['password'])) {

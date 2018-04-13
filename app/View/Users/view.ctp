@@ -28,40 +28,35 @@
                     echo $this->Form->create('User',array(
                             "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
                             'inputDefaults' => array(
-                                'div' => false
+                                'div' => false,
+                                'label' => false
                             ),
                             'class' => 'col-xs-12'
                         )
                     );
                     ?>
-                    <?php
-                    echo $this->Form->input('password',array(
-                            'label' =>'<h5>Password</h5>',
-                            'class' => 'form-control',
-                            'type' => 'text',
-                            'value' => 'MArtino98#',
-                        )
-                    );
-                    ?>
-                    <div class="form-group col-xs-3">
+                    <div class="form-group col-md-4">
+                        <?= $this->Form->label('email','Email',array('class' =>'control-label','for' => 'first_name')); ?>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <?php
                             echo $this->Form->input('email',array(
-                                    'label' =>'<h5>Inserisci nuovo indirizzo email</h5>',
                                     'class' => 'form-control',
-                                    'type' => 'email',
+                                    'type' => 'email'
                                 )
                             );
                             ?>
+                        </div>
                     </div>
                     <div class="form-group col-xs-6">
-                            <?php
-                            echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia',array(
-                                    'class' => 'btn btn-success',
-                                    'type' => 'submit',
-                                    'escape' => false,
-                                )
-                            );
-                            ?>
+                        <?php
+                        echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia',array(
+                                'class' => 'btn btn-success',
+                                'type' => 'submit',
+                                'escape' => false
+                            )
+                        );
+                        ?>
                     </div>
                     <!-- </div> -->
                     <?php echo $this->Form->end(); ?>
