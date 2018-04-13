@@ -117,7 +117,14 @@ class User extends AppModel {
         //var_dump($this->data); exit;
         if (!empty($this->data['User']['date_birth'])) {
             if (!$this->checkDateTime($this->data['User']['date_birth'],'d-m-Y')) {
-                //Se legge la data di nascita inserita nella registrazione di un nuovo utente.
+                /*
+                *    Se legge la data di nascita inserita nella registrazione di un nuovo utente.
+                *
+                *    [Osservazione] => Utilizzo in questo caso la chiamata al metodo
+                *    dateFormatBeforeSave e non date() poichè riceve in ingresso una data con un differente
+                *    separatore (/). Se utilizzassi date() in alcune situazioni invertirebbe il numero
+                *    relativo al giorno con quello del mese.
+                */
                 $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
             }
             //Se legge la data di nascita durante la edit del User.

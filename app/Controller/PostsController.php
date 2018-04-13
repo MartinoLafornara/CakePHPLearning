@@ -58,7 +58,7 @@ class PostsController extends AppController {
         //$this->set('posts',$this->Post->find('all', array('conditions' => $conditions)));
         //$this->set('utenti',$this->User->find('all', array('conditions' => $var)));
 
-        /*Paginator
+        /* Paginator
         * $this->paginator->setting => imposto il settaggio attribuendo la configurazione ($paginate).
         * $paginate presenterà un'ulteriore condition nel caso in cui l'utente non è Admin.
         */
