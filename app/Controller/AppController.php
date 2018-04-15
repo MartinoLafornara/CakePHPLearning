@@ -58,7 +58,7 @@ class AppController extends Controller {
                     )
                 )
             ),
-            'authError' => 'Non sei autorizzato',
+            'authError' => false,
             'authorize' => array('Controller'), // Added this line
             'unauthorizedRedirect' => array(
                 'controller' => 'posts',
