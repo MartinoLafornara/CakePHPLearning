@@ -119,6 +119,10 @@ table > tbody > tr> td > .btn {
     align-items: flex-end;
 }
 
-.nav-tabs>li.active>a {
-    color: #555 !important
+#myTab>li.active>a {
+    color: #555 !important;
+}
+
+#myTab>li>a{
+    color: #428bca !important;
 }
