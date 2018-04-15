@@ -1,5 +1,12 @@
 <h5><?php print_r($user) ?></h5>
+<!-- Import CSS -->
+<?php $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.2/css/bootstrapValidator.css',array('inline' => false)); ?>
 
+<!-- Import JavaScript -->
+<?php
+$this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js',array('inline' => false));
+$this->Html->script('users/view.js',array('inline' => false));
+?>
 
 <div class="container-fluid">
     <div class="row">
@@ -29,20 +36,22 @@
                             "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
                             'inputDefaults' => array(
                                 'div' => false,
-                                'label' => false
+                                'label' => false,
                             ),
+                            'id'=>'change_email_form',
                             'class' => 'col-xs-12'
                         )
                     );
                     ?>
                     <div class="form-group col-md-4">
-                        <?= $this->Form->label('email','Email',array('class' =>'control-label','for' => 'first_name')); ?>
+                        <?= $this->Form->label('email','Email',array('class' =>'control-label','for' => 'email')); ?>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <?php
                             echo $this->Form->input('email',array(
                                     'class' => 'form-control',
-                                    'type' => 'email'
+                                    'type' => 'email',
+                                    'id' => 'email'
                                 )
                             );
                             ?>
