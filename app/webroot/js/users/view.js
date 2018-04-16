@@ -23,6 +23,40 @@ $('#change_email_form').bootstrapValidator({
 });
 
 /**
+ *    bootstrapValidator (Libreria js)
+ *    - Definisco le regole di validazione per ogni songolo campo (name attribute)
+ */
+
+$('#change_password_form').bootstrapValidator({
+    fields: {
+        "data[User][password]" : {
+            validators: {
+                notEmpty: {
+                    message: 'Campo obbligatorio.'
+                },
+                regexp: {
+                    regexp: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#\$@%\*\-])[A-Za-z0-9_#\$@%\*\-]{8,16}$/,
+                    message: 'La password deve avere lunghezza compresa tra 8 e 16 caratteri.<br> Almeno una maiuscola, una minuscola, un numero e un carattere consentito (_#$@%*-).'
+                }
+            }
+        },
+        "data[User][confirm_password]" : {
+            validators: {
+                identical: {
+                    field: "data[User][password]",
+                    message: 'Le password non coincidono.'
+                },
+                notEmpty: {
+                    message: 'Conferma la tua nuova password.'
+                }
+            }
+        }
+    }
+});
+
+
+
+/**
  * evento change di #email
  *
  * - Faccio una get a un metodo interno (controllo duplicati email).
@@ -49,3 +83,18 @@ $('#email').on('change', function(){
         },'json');
     }
 });
+
+/**
+ * evento change di #old_password
+ *
+ * - Faccio una post a un metodo interno (controllo password attuale).
+ *
+ */
+
+$('#old_password').on('change',function(){
+    if($('#old_password').val()!='') {
+        $.get('../check_password?password='+$('#old_password').val(),function(data,response){
+            // console.log(response);
+        },'json');
+    }
+})

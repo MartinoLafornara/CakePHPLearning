@@ -35,7 +35,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
       parent::beforeFilter();
       // Allow users to register and logout.
-      $this->Auth->allow('signup','logout','login','check_domain','check_duplicate');
+      $this->Auth->allow('signup','logout','login','check_domain','check_duplicate','check_password');
       $this->Auth->deny('index','view');
     }
 
@@ -284,6 +284,14 @@ class UsersController extends AppController {
     public function check_duplicate() {
         // $this->User->find() => ricerca/conta... gli utenti eventualmente anche con una determinata condition.
         if($this->User->find('count', array('conditions' => array('User.email' => $this->request->query('email')))) != 0) {
+            echo json_encode(array("valid" => true)); exit;
+        }
+        echo json_encode(array("valid" => false)); exit;
+    }
+
+    public function check_password() {
+        // pr($this->User); exit;
+        if($this->User->find('count',array('conditions' => array('User.password' => $this->request->query('password')))) != 0){
             echo json_encode(array("valid" => true)); exit;
         }
         echo json_encode(array("valid" => false)); exit;

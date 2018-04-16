@@ -33,6 +33,7 @@ $this->Html->script('users/view.js',array('inline' => false));
                         )
                     );
                     ?>
+                    <fieldset>
                     <div class="form-group col-md-4">
                         <?= $this->Form->label('email','Email',array('class' =>'control-label','for' => 'email')); ?>
                         <div class="input-group">
@@ -46,17 +47,19 @@ $this->Html->script('users/view.js',array('inline' => false));
                             );
                             ?>
                         </div>
-                        <br>
-                        <?php
-                        echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia',array(
-                                'class' => 'btn btn-success',
-                                'type' => 'submit',
-                                'escape' => false
+                    </div>
+
+                    <div class="form-group col-md-9">
+                    <?php
+                        echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia Email',array(
+                            'class' => 'btn btn-success',
+                            'type' => 'submit',
+                            'escape' => false
                             )
                         );
-                        ?>
+                    ?>
                     </div>
-                    <!-- </div> -->
+                    </fieldset>
                     <?php echo $this->Form->end(); ?>
                 </div>
                 <div class="tab-pane" id="changePassword">
