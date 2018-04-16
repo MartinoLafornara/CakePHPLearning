@@ -21,7 +21,7 @@ class UsersController extends AppController {
         'User' => array (
             'fields' => array('User.first_name','User.last_name', 'User.email' ,'User.created'
             ),
-            'maxLimit' => 5,
+            'maxLimit' => 15,
             'order' => array(
                 'User.created' => 'desc'
             )

@@ -31,7 +31,7 @@ class PostsController extends AppController {
             'fields' => array(
                 'Post.id','Post.title','Post.modified','Post.created','Post.topic','User.first_name','User.last_name'
             ),
-            'maxLimit' => 3, // Numero massimo di elementi per pagina.
+            'maxLimit' => 15, // Numero massimo di elementi per pagina.
             'order' => array(
                 'Post.modified' => 'desc'
             )
