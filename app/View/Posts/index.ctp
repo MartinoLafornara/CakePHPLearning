@@ -35,6 +35,7 @@
         <thead>
             <tr class ='info'>
                 <th>Titolo</th>
+                <th>Argomento</th>
                 <th>Ultima Modifica</th>
                 <th>Azioni</th>
             </tr>
@@ -51,6 +52,9 @@
                             array('action' => 'view', $post['Post']['id'])
                         );
                     ?>
+                </td>
+                <td>
+                    <?php echo $post['Post']['topic'] ?>
                 </td>
                 <td class='clickable-row'>
                     <?php echo $post['Post']['modified']; ?>

@@ -28,6 +28,22 @@
                 ); ?>
                 <small id="BodyHelp" class="form-text text-muted">Inserisci un contenuto sensibile.</small>
             </div>
+            <div class='form-group'>
+                <?= $this->Form->label('topic','Argomento'); ?>
+                <br>
+                <?= $this->Form->input('topic', array(
+                    'options' => array(
+                        'Tecnologia' => 'Tecnologia',
+                        'Cibo' => 'Cibo',
+                        'Scienza' => 'Scienza',
+                        'Attualità' => 'Attualità'
+                        ),
+                    'empty' => '-- Scegli un Argomento --',
+                    'label' => false
+                    )
+                );
+                ?>
+            </div>
             <?= $this->Form->input('id', array('type' => 'hidden')); ?>
             <?= $this->Form->submit(__('Modifica Post'),array(
                 'class'=>'btn btn-primary'
