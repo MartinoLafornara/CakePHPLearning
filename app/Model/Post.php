@@ -20,6 +20,12 @@ class Post extends AppModel {
             'message' => 'Sono ammessi solamente caratteri alfabetici, di punteggiatura e spazi.',
             'allowEmpty' => false,
             'required' => true
+        ),
+        'topic' => array(
+            'rule' => array('inList', array('Tecnologia', 'Cibo','Scienza','Attualità')),
+            'message' => 'Inserisci un argomento valido.',
+            'allowEmpty' => false,
+            'required' => true
         )
     );
 

@@ -29,7 +29,7 @@ class PostsController extends AppController {
     public $paginate = array(
         'Post' => array (
             'fields' => array(
-                'Post.id','Post.title','Post.modified','Post.created','User.first_name','User.last_name'
+                'Post.id','Post.title','Post.modified','Post.created','Post.topic','User.first_name','User.last_name'
             ),
             'maxLimit' => 3, // Numero massimo di elementi per pagina.
             'order' => array(
