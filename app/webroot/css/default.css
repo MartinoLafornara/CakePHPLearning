@@ -114,11 +114,6 @@ table > tbody > tr> td > .btn {
     text-align: right;
 }
 
-#changeEmail {
-    display: flex;
-    align-items: flex-end;
-}
-
 #myTab>li.active>a {
     color: #555 !important;
 }

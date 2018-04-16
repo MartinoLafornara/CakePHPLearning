@@ -55,7 +55,8 @@ class UsersController extends AppController {
     }
 
     public function isAuthorized($user) {
-        if($this->action ==='view'){
+        // in_array($this->action, array('edit', 'delete')
+        if (in_array($this->action, array('view', 'edit'))) {
             $userId = (int) $this->request->params['pass'][0];
             if ($userId == $user['id']){
                 return true;
@@ -133,6 +134,7 @@ class UsersController extends AppController {
      */
 
     public function edit($id = null) {
+        // pr($this->request->data('User.email')); exit;
         if ($this->request->is('post') || $this->request->is('put')) {
             if (!$this->User->exists($id)) {
                 throw new NotFoundException(__('Invalid user'));
@@ -148,9 +150,17 @@ class UsersController extends AppController {
             //     )
             // );
             //$this->User->save($this->request->data,array('fieldList' => array('email','password')))
-            if ($this->User->save($this->request->data,array('fieldList' => array('email')))) {
-                $this->Session->setFlash(__('Dati utente modificati!'),'Flash/success');
-                return $this->redirect(array('action' => 'index'));
+            if (!empty($this->request->data('User.email'))) {
+                if ($this->User->save($this->request->data,array('fieldList' => array('email')))) {
+                    $this->Session->setFlash(__('Email utente modificata!'),'Flash/success');
+                    return $this->redirect(array('action' => 'index'));
+                }
+            }
+            if (!empty($this->request->data('User.password'))) {
+                if ($this->User->save($this->request->data,array('fieldList' => array('password')))) {
+                    $this->Session->setFlash(__('Email utente modificata!'),'Flash/success');
+                    return $this->redirect(array('action' => 'index'));
+                }
             }
             // Visualizza i fields non corretti (problemi di validazione)
             var_dump($this->User->invalidFields()); exit;

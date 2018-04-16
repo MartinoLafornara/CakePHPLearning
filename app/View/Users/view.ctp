@@ -15,19 +15,9 @@ $this->Html->script('users/view.js',array('inline' => false));
     <div class="row">
         <div class="col-sm-9">
             <ul class="nav nav-tabs" id="myTab">
-                <li class='active'><a href="#changeEmail" data-toggle="tab">Modifica Email</a></li>
-                <li><a href="#changePassword" data-toggle="tab">Modifica Password</a></li>
+                <li class='active'><a href="#changeEmail" data-toggle="tab">Cambio Email</a></li>
+                <li><a href="#changePassword" data-toggle="tab">Aggiorna Password</a></li>
             </ul>
-        <?php
-        // echo $this->Form->create('User',array(
-        //         "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
-        //         'inputDefaults' => array(
-        //             'div' => false
-        //         ),
-        //         'class' => 'col-sm-9'
-        //     )
-        // );
-        ?>
             <div class="tab-content">
                 <br>
                 <div class="tab-pane active" id='changeEmail'>
@@ -69,8 +59,73 @@ $this->Html->script('users/view.js',array('inline' => false));
                     <!-- </div> -->
                     <?php echo $this->Form->end(); ?>
                 </div>
+                <div class="tab-pane" id="changePassword">
+                    <?php
+                    echo $this->Form->create('User',array(
+                            "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
+                            'inputDefaults' => array(
+                                'div' => false,
+                                'label' => false,
+                            ),
+                            'id'=>'change_password_form',
+                            'class' => 'col-md-4'
+                        )
+                    );
+                    ?>
+                    <div class="form-group">
+                        <?= $this->Form->label('old_password','Password Attuale',array('class' =>'control-label','for' => 'old_password')); ?>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <?php
+                            echo $this->Form->input('old_password', array(
+                            'placeholder'=>'Password Attuale',
+                            'class'=>'form-control',
+                            'id' => 'old_password',
+                            'maxlength' => 16
+                            ));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?= $this->Form->label('password','Nuova Password',array('class' =>'control-label','for' => 'password')); ?>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <?php
+                            echo $this->Form->input('password', array(
+                            'placeholder'=>'Nuova Password',
+                            'class'=>'form-control',
+                            'id' => 'password',
+                            'maxlength' => 16
+                            ));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?= $this->Form->label('confirm_password','Conferma Nuova Password',array('class' =>'control-label','for' => 'confirm_password')); ?>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <?php
+                            echo $this->Form->input('confirm_password', array(
+                            'placeholder'=>'Conferma Nuova Password',
+                            'type' => 'password',
+                            'class'=>'form-control',
+                            'id' => 'confirm_password',
+                            'maxlength' => 16
+                            ));
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                    echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia',array(
+                        'class' => 'btn btn-success',
+                        'type' => 'submit',
+                        'escape' => false
+                        )
+                    );
+                    ?>
+                    <?php echo $this->Form->end(); ?>
+                </div>
             </div>
-            <?php //echo $this->Form->end(); ?>
         </div>
         <div class="col-sm-3"><!--left col-->
             <ul class="list-group">

@@ -116,7 +116,7 @@ class User extends AppModel {
     public function beforeSave($options = array()) {
         //Adatta il Date Format per il Database
         //var_dump($this->data); exit;
-        
+
         if (!empty($this->data['User']['date_birth'])) {
             $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
         }
