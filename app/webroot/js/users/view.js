@@ -92,9 +92,12 @@ $('#email').on('change', function(){
  */
 
 $('#old_password').on('change',function(){
+    //data = [$('#old_password').val(),$('#userId').val()] ;
+    //data ='{ "old_password":"'+$('#old_password').val() +'", "id":"'+ $('#userId').val()+'"}';
+    data = $(this).serialize();
     if($('#old_password').val()!='') {
-        $.get('../check_password?password='+$('#old_password').val(),function(data,response){
-            // console.log(response);
+        $.post('../check_password', data ,function(data,response){
+            
         },'json');
     }
 })

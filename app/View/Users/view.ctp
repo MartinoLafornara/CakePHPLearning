@@ -76,6 +76,14 @@ $this->Html->script('users/view.js',array('inline' => false));
                     );
                     ?>
                     <div class="form-group">
+                        <?php
+                        // echo $this->Form->input('id', array(
+                        //     'type' => 'hidden',
+                        //     'value'=> $user['User']['id'],
+                        //     'id' => 'userId'
+                        //     )
+                        // );
+                        ?>
                         <?= $this->Form->label('old_password','Password Attuale',array('class' =>'control-label','for' => 'old_password')); ?>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>

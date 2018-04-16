@@ -2,6 +2,7 @@
 // app/Controller/UsersController.php
 // Load of AppController
 App::uses('AppController', 'Controller');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class UsersController extends AppController {
 
@@ -282,19 +283,40 @@ class UsersController extends AppController {
      */
 
     public function check_duplicate() {
-        // $this->User->find() => ricerca/conta... gli utenti eventualmente anche con una determinata condition.
-        if($this->User->find('count', array('conditions' => array('User.email' => $this->request->query('email')))) != 0) {
-            echo json_encode(array("valid" => true)); exit;
+        if($this->request->is('ajax')) {
+            // $this->User->find() => ricerca/conta... gli utenti eventualmente anche con una determinata condition.
+            if($this->User->find('count', array('conditions' => array('User.email' => $this->request->query('email')))) != 0) {
+                echo json_encode(array("valid" => true)); exit;
+            }
+            echo json_encode(array("valid" => false)); exit;
         }
-        echo json_encode(array("valid" => false)); exit;
     }
 
+    /**
+     * check_password
+     *
+     * Verifica se la password attuale dell'utente è corretta.
+     *
+     * [Osservazione] => E' necessario fare un controllo non solo sulla password,
+     * ma anche su quel determinato utente perchè può capitare che due utenti abbiano
+     * la stessa password.
+     *
+     * @return json
+     */
+
     public function check_password() {
-        // pr($this->User); exit;
-        if($this->User->find('count',array('conditions' => array('User.password' => $this->request->query('password')))) != 0){
-            echo json_encode(array("valid" => true)); exit;
+        if($this->request->is('ajax')) {
+            $current_password = $this->request->data('User.old_password');
+            $this->User->id = $this->Auth->user('id');
+            $passwordHasher = new BlowfishPasswordHasher();
+            $passwordHasher = $passwordHasher->hash($current_password);
+            pr($passwordHasher); exit;
+            //$result= $passwordHasher->check($current_password,$passwordHasher->hash($current_password));
+            if($this->User->find('count',array('conditions' => array('User.password' => $passwordHasher))) == 1) {
+                echo json_encode(array("valid" => true)); exit;
+            }
+            echo json_encode(array("valid" => false)); exit;
         }
-        echo json_encode(array("valid" => false)); exit;
     }
 
 }
