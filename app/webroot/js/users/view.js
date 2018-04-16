@@ -1,3 +1,8 @@
+/**
+ *    bootstrapValidator (Libreria js)
+ *    - Definisco le regole di validazione per ogni songolo campo (name attribute)
+ */
+
 $('#change_email_form').bootstrapValidator({
     fields: {
         "data[User][email]" : {
@@ -16,6 +21,13 @@ $('#change_email_form').bootstrapValidator({
         }
     }
 });
+
+/**
+ * evento change di #email
+ *
+ * - Faccio una get a un metodo interno (controllo duplicati email).
+ * - Faccio una get per verificare il dominio email.
+ */
 
 $('#email').on('change', function(){
     if ($('#email').val()!=''){

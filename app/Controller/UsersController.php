@@ -178,12 +178,12 @@ class UsersController extends AppController {
         /*
           $this->request->data('deleteuserid') è l'input hidden del modal di eliminazione account.
         */
-        $this->User->id = $this->request->data('deleteuserid');
+        $userId = $this->request->data('deleteuserid');
         //pr(!$this->User->exists()); exit;
-        if (!$this->User->exists()) {
+        if (!$this->User->exists($userId)) {
             throw new NotFoundException(__('Invalid user'));
         }
-        if ($this->User->delete()) {
+        if ($this->User->delete($userId, true)) {
             $this->Session->setFlash(__('Utente rimosso.'),'Flash/success');
             return $this->redirect($this->referer());
         }

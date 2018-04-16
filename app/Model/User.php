@@ -76,7 +76,8 @@ class User extends AppModel {
     public $hasMany = array(
         'Post' => array(
             'className' => 'Post',
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => true
         )
     );
 
