@@ -26,7 +26,8 @@
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $userLogged['first_name'].' '.$userLogged['last_name']?> <span class="caret"></span></a>
 		  <ul class="dropdown-menu" role="menu">
 			<li><?= $this->Html->link("Profilo", array('controller'=>'users','action' => 'view', $userLogged['id'])); ?></li>
-			<li><a href="#">Settings</a></li>
+			<!-- <li><a href="#">Settings</a></li> -->
+            <li><?=  $this->Html->link("I miei Post", array('controller'=>'posts' ,'action' => 'index')); ?> </li>
 			<li class="divider"></li>
 			<li><?= $this->Html->link('Logout',array('controller'=>'users', 'action'=>'logout'));?></li>
 		  </ul>

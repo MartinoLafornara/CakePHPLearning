@@ -56,8 +56,7 @@ $this->Html->script('users/view.js',array('inline' => false));
                             );
                             ?>
                         </div>
-                    </div>
-                    <div class="form-group col-xs-6">
+                        <br>
                         <?php
                         echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia',array(
                                 'class' => 'btn btn-success',
