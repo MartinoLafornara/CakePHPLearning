@@ -310,13 +310,10 @@ class UsersController extends AppController {
 
     public function check_password() {
         if($this->request->is('ajax')) {
-            // pr($this->request->data); exit;
             $checkPassword = $this->request->data('check_password');
             $userID = $this->request->data('user_id');
 
-            //Per evitare di passargli al metodo del Model l'id.
-            $this->User->id = $this->request->data('user_id');
-            $result = $this->User->check_password($checkPassword);
+            $result = $this->User->check_password($userID,$checkPassword);
             if ($result) {
                 echo json_encode(array("valid" => true)); exit;
             }

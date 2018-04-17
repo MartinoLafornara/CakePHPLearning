@@ -268,8 +268,24 @@ class User extends AppModel {
         return ($d && ($d->format($format)==$date));
     }
 
-    public function check_password($psw_to_match) {
-        $user = $this->read();
+    /**
+     * check_password
+     *
+     * Verifica se la password passata in ingresso è quella attuale dell'utente.
+     *
+     * [Osservazione] => BlowfishPasswordHasher cifra in maniera differente anche una
+     * stessa stringa, pertanto non bisogna comparare soltanto la stringa cifrata e l'ipotetica
+     * stringa iniziale, ma, è necessario utilizzare il metodo check della stessa classe che ha
+     * in ingresso i due valori.
+     *
+     * @param integer $id - id dell'utente.
+     * @param string $psw_to_match - Stringa da matchare.
+     *
+     * @return boolean - il risultato del match
+     */
+
+    public function check_password($id,$psw_to_match) {
+        $user = $this->read(null,$id);
         $passwordHasher = new BlowfishPasswordHasher();
         return $passwordHasher->check($psw_to_match,$user['User']['password']);
     }
