@@ -268,6 +268,12 @@ class User extends AppModel {
         return ($d && ($d->format($format)==$date));
     }
 
+    public function check_password($psw_to_match) {
+        $user = $this->read();
+        $passwordHasher = new BlowfishPasswordHasher();
+        return $passwordHasher->check($psw_to_match,$user['User']['password']);
+    }
+
 }
 
 ?>

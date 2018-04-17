@@ -159,7 +159,7 @@ class UsersController extends AppController {
             }
             if (!empty($this->request->data('User.password'))) {
                 if ($this->User->save($this->request->data,array('fieldList' => array('password')))) {
-                    $this->Session->setFlash(__('Email utente modificata!'),'Flash/success');
+                    $this->Session->setFlash(__('Password utente modificata!'),'Flash/success');
                     return $this->redirect(array('action' => 'index'));
                 }
             }
@@ -310,15 +310,23 @@ class UsersController extends AppController {
 
     public function check_password() {
         if($this->request->is('ajax')) {
-
-            $currentPassword = $this->request->data('current_password');
+            // pr($this->request->data); exit;
             $checkPassword = $this->request->data('check_password');
-            $passwordHasher = new BlowfishPasswordHasher();
-            $result = $passwordHasher->check($checkPassword,$currentPassword);
-            if($result && $this->User->find('count',array('conditions' => array('User.id' => $this->Auth->user('id')))) == 1) {
+            $userID = $this->request->data('user_id');
+
+            //Per evitare di passargli al metodo del Model l'id.
+            $this->User->id = $this->request->data('user_id');
+            $result = $this->User->check_password($checkPassword);
+            if ($result) {
                 echo json_encode(array("valid" => true)); exit;
             }
             echo json_encode(array("valid" => false)); exit;
+            // $passwordHasher = new BlowfishPasswordHasher();
+            // $result = $passwordHasher->check($checkPassword,$currentPassword);
+            // if($result && $this->User->find('count',array('conditions' => array('User.id' => $userID))) == 1) {
+            //     echo json_encode(array("valid" => true)); exit;
+            // }
+            // echo json_encode(array("valid" => false)); exit;
         }
     }
 

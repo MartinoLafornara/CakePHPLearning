@@ -103,7 +103,7 @@ $('#email').on('change', function(){
  */
 
 $('#check_password').on('change',function(){
-    data ='{"check_password":"'+$('#check_password').val() +'","current_password":"'+ $('#current_password').val()+'"}';
+    data ='{"user_id":"'+$('#user_id').val()+'","check_password":"'+$('#check_password').val()+'"}';
     if($('#check_password').val()!='') {
         $.post('../check_password',JSON.parse(data),function(data,response){
             if(!data.valid){

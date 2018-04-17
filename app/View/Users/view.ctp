@@ -77,10 +77,10 @@ $this->Html->script('users/view.js',array('inline' => false));
                     ?>
                     <div class="form-group">
                         <?php
-                        echo $this->Form->input('current_password', array(
+                        echo $this->Form->input('user_id', array(
                             'type' => 'hidden',
-                            'value'=> $user['User']['password'],
-                            'id' => 'current_password'
+                            'value'=> $user['User']['id'],
+                            'id' => 'user_id'
                             )
                         );
                         ?>
