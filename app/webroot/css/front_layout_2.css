@@ -45,7 +45,7 @@
 #myFooter {
     background-color: #3c3d41;
     color: white;
-    padding-top: 30px;
+    padding-top: 40px;
 }
 
 #myFooter .footer-copyright {
@@ -167,7 +167,7 @@ html,body {
     height: 100vh;
     padding-top: 52px;
     /* Height of the footer */
-	padding-bottom: 289px;
+	padding-bottom: 299px;
 }
 #footer {
 	position:absolute;
@@ -180,4 +180,12 @@ html,body {
 /* NavBar */
 .navbar {
     border-width: 0 0 1px 0 ;
+}
+
+.navbar-default .navbar-brand {
+    font-family: Indie Flower;
+}
+
+.navbar-default .navbar-nav>li>a {
+    font-family: Indie Flower;
 }

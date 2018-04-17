@@ -51,7 +51,7 @@ $this->Html->script('users/view.js',array('inline' => false));
 
                     <div class="form-group col-md-9">
                     <?php
-                        echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia Email',array(
+                        echo $this->Form->button('Cambia Email <i class="glyphicon glyphicon-ok-sign"></i>',array(
                             'class' => 'btn btn-success',
                             'type' => 'submit',
                             'escape' => false
@@ -128,7 +128,7 @@ $this->Html->script('users/view.js',array('inline' => false));
                         </div>
                     </div>
                     <?php
-                    echo $this->Form->button('<i class="glyphicon glyphicon-ok-sign"></i> Invia',array(
+                    echo $this->Form->button('Cambia Password <i class="glyphicon glyphicon-ok-sign"></i> ',array(
                         'class' => 'btn btn-success',
                         'type' => 'submit',
                         'escape' => false

@@ -40,7 +40,7 @@
 #myFooter {
     background-color: #3c3d41;
     color: white;
-    padding-top: 30px;
+    padding-top: 40px;
 }
 
 #myFooter .footer-copyright {
@@ -161,7 +161,7 @@ html,body {
 #content {
     padding-top: 0px;
     /* Height of the footer */
-	padding-bottom: 289px;
+	padding-bottom: 299px;
 }
 #footer {
 	position:absolute;
