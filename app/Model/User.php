@@ -115,7 +115,7 @@ class User extends AppModel {
 
     public function beforeSave($options = array()) {
         //Adatta il Date Format per il Database
-        //var_dump($this->data); exit;
+        // var_dump($this->data); exit;
 
         if (!empty($this->data['User']['date_birth'])) {
             $this->data['User']['date_birth'] = $this->dateFormatBeforeSave($this->data['User']['date_birth']);
@@ -193,6 +193,9 @@ class User extends AppModel {
         foreach ($results as $row => $fields) {
             if (isset($fields['User']['created'])) {
                 $results[$row]['User']['created'] = $this->dateFormatAfterFind($fields['User']['created'],'d-m-Y H:i:s');
+            }
+            if (isset($fields['User']['modified'])) {
+                $results[$row]['User']['modified'] = $this->dateFormatAfterFind($fields['User']['modified'],'d-m-Y H:i:s');
             }
             if (isset($fields['User']['date_birth'])) {
                 $results[$row]['User']['date_birth'] = $this->dateFormatAfterFind($fields['User']['date_birth']);

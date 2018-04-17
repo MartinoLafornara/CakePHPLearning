@@ -121,6 +121,27 @@ class UsersController extends AppController {
         }
     }
 
+    public function changePassword ($id = null) {
+        // pr($this->request->data('User.check_password')); exit;
+        if($this->request->is('post') || $this->request->is('put')) {
+            if (!$this->User->exists($id)) {
+                throw new NotFoundException(__('Invalid User'));
+            }
+            // pr($this->User->check_password($id,$this->request->data('User.check_password'))); exit;
+
+            if($this->User->check_password($id,$this->request->data('User.check_password'))) {
+                $this->User->clear();
+                $this->User->id = $id;
+                if ($this->User->save($this->request->data,array('fieldList' => array('password')))) {
+                    $this->Session->setFlash(__('Password utente modificata!'),'Flash/success');
+                    return $this->redirect(array('action' => 'index'));
+                }
+            }
+            $this->Session->setFlash(__('Verifica che la password attuale sia stata inserita correttamente.'),'Flash/error');
+            return $this->redirect(array('action' => 'index'));
+        }
+    }
+
     /**
      * edit - Modifica informazioni Utente
      *
@@ -312,7 +333,6 @@ class UsersController extends AppController {
         if($this->request->is('ajax')) {
             $checkPassword = $this->request->data('check_password');
             $userID = $this->request->data('user_id');
-
             $result = $this->User->check_password($userID,$checkPassword);
             if ($result) {
                 echo json_encode(array("valid" => true)); exit;

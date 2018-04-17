@@ -65,7 +65,7 @@ $this->Html->script('users/view.js',array('inline' => false));
                 <div class="tab-pane" id="changePassword">
                     <?php
                     echo $this->Form->create('User',array(
-                            "url" => array('controller' => 'users','action' => 'edit',$user['User']['id']),
+                            "url" => array('controller' => 'users','action' => 'changePassword',$user['User']['id']),
                             'inputDefaults' => array(
                                 'div' => false,
                                 'label' => false,
