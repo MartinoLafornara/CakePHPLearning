@@ -301,18 +301,21 @@ class UsersController extends AppController {
      * ma anche su quel determinato utente perchè può capitare che due utenti abbiano
      * la stessa password.
      *
+     * @var string $currentPassword - E' la password cifrata attuale dell'utente.
+     * @var string $checkPassword - E' la password inserita nel form per matcharla con
+     * quella effettiva.
+     *
      * @return json
      */
 
     public function check_password() {
         if($this->request->is('ajax')) {
-            $current_password = $this->request->data('User.old_password');
-            $this->User->id = $this->Auth->user('id');
+
+            $currentPassword = $this->request->data('current_password');
+            $checkPassword = $this->request->data('check_password');
             $passwordHasher = new BlowfishPasswordHasher();
-            $passwordHasher = $passwordHasher->hash($current_password);
-            pr($passwordHasher); exit;
-            //$result= $passwordHasher->check($current_password,$passwordHasher->hash($current_password));
-            if($this->User->find('count',array('conditions' => array('User.password' => $passwordHasher))) == 1) {
+            $result = $passwordHasher->check($checkPassword,$currentPassword);
+            if($result && $this->User->find('count',array('conditions' => array('User.id' => $this->Auth->user('id')))) == 1) {
                 echo json_encode(array("valid" => true)); exit;
             }
             echo json_encode(array("valid" => false)); exit;

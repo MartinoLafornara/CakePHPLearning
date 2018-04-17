@@ -47,8 +47,19 @@ $('#change_password_form').bootstrapValidator({
                     message: 'Le password non coincidono.'
                 },
                 notEmpty: {
-                    message: 'Conferma la tua nuova password.'
+                    message: 'Conferma la nuova password.'
                 }
+            }
+        },
+        "data[User][check_password]" : {
+            validators: {
+                notEmpty: {
+                    message: ' '
+                },
+                stringLength : {
+                    min : 1,
+                    message: 'Almeno un carattere'
+                },
             }
         }
     }
@@ -85,19 +96,27 @@ $('#email').on('change', function(){
 });
 
 /**
- * evento change di #old_password
+ * evento change di #check_password
  *
  * - Faccio una post a un metodo interno (controllo password attuale).
  *
  */
 
-$('#old_password').on('change',function(){
-    //data = [$('#old_password').val(),$('#userId').val()] ;
-    //data ='{ "old_password":"'+$('#old_password').val() +'", "id":"'+ $('#userId').val()+'"}';
-    data = $(this).serialize();
-    if($('#old_password').val()!='') {
-        $.post('../check_password', data ,function(data,response){
-            
+$('#check_password').on('change',function(){
+    data ='{"check_password":"'+$('#check_password').val() +'","current_password":"'+ $('#current_password').val()+'"}';
+    if($('#check_password').val()!='') {
+        $.post('../check_password',JSON.parse(data),function(data,response){
+            if(!data.valid){
+                $('#change_password_form').data('bootstrapValidator').updateStatus('data[User][check_password]', 'INVALID', 'stringLength');
+                $('#change_password_form').data('bootstrapValidator').updateMessage('data[User][check_password]', 'stringLength', 'Password errata!');
+            }
         },'json');
     }
-})
+});
+
+$('#password').on('keyup',function(){
+    if($('#confirm_password').val()!='') {
+        $('#confirm_password').val('');
+        $('#confirm_password').trigger('input');
+    }
+});

@@ -77,21 +77,22 @@ $this->Html->script('users/view.js',array('inline' => false));
                     ?>
                     <div class="form-group">
                         <?php
-                        // echo $this->Form->input('id', array(
-                        //     'type' => 'hidden',
-                        //     'value'=> $user['User']['id'],
-                        //     'id' => 'userId'
-                        //     )
-                        // );
+                        echo $this->Form->input('current_password', array(
+                            'type' => 'hidden',
+                            'value'=> $user['User']['password'],
+                            'id' => 'current_password'
+                            )
+                        );
                         ?>
-                        <?= $this->Form->label('old_password','Password Attuale',array('class' =>'control-label','for' => 'old_password')); ?>
+                        <?= $this->Form->label('check_password','Password Attuale',array('class' =>'control-label','for' => 'check_password')); ?>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <?php
-                            echo $this->Form->input('old_password', array(
+                            echo $this->Form->input('check_password', array(
                             'placeholder'=>'Password Attuale',
-                            'class'=>'form-control',
-                            'id' => 'old_password',
+                            'class' => 'form-control',
+                            'type' => 'password',
+                            'id' => 'check_password',
                             'maxlength' => 16
                             ));
                             ?>
@@ -117,7 +118,7 @@ $this->Html->script('users/view.js',array('inline' => false));
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <?php
                             echo $this->Form->input('confirm_password', array(
-                            'placeholder'=>'Conferma Nuova Password',
+                            'placeholder'=>'Nuova Password',
                             'type' => 'password',
                             'class'=>'form-control',
                             'id' => 'confirm_password',
